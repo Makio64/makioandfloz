@@ -1,0 +1,57 @@
+//main .styl
+
+@import 'nib'
+
+// GENERIC
+global-reset()
+reset-html5()
+
+canvas
+	position absolute
+	top 0
+	left 0
+	z-index 1
+	background transparent
+
+body
+	background #F0F0F0
+	overflow hidden
+	min-height 100%
+	height 100%
+	width 100%
+
+iframe
+	z-index 1
+	min-height 100%
+	height 100%
+	width 100%
+	position absolute
+	top 0
+	left 200px
+
+// FONTS
+
+// FONT_PATH = '../fonts/'
+//
+// // push your fonts name here, fontname and filename should be same.
+// fonts = Helvetica Drone Test
+//
+// importFont(name)
+// 	url = FONT_PATH + name
+// 	@font-face
+// 		font-family name
+// 		src url(url+'.eot')
+// 		src url(url+'.eot?#iefix') format('embedded-opentype'),
+// 			url(url+'.woff2') format('woff2'),
+// 			url(url+'.woff') format('woff'),
+// 			url(url+'.ttf') format('truetype'),
+// 			url(url+'.svg#' + $icon-font-svg-id) format('svg')
+// 		font-weight normal
+// 		font-style normal
+//
+// for font in fonts
+// 	importFont(font)
+// @import 'fonts.styl'
+
+// Loader
+@import 'menu.styl'
