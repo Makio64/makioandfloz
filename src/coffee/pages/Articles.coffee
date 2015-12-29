@@ -35,6 +35,14 @@ class Articles extends Scene
 		return
 
 	@onReady:()=>
+		# iframe loaded
+		doc = @iframe.contentWindow.document
+		HtmlUtils.updateMetaFB(
+			HtmlUtils.getMeta("og:title",doc),
+			HtmlUtils.getMeta("og:description",doc),
+			HtmlUtils.getMeta("og:url",doc),
+			HtmlUtils.getMeta("og:image",doc)
+		)
 		return
 
 	transitionIn:()->

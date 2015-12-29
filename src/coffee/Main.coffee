@@ -21,6 +21,9 @@ class Main
 		page()
 
 		callbackLoad(1)
+
+		# fullscreen support android
+		document.addEventListener('touchstart', @fullScreen, true)
 		return
 
 	onLink:(e)->
@@ -41,5 +44,6 @@ class Main
 	on404:()->
 		SceneTraveler.to(new Error404())
 		return
+
 
 module.exports = Main
