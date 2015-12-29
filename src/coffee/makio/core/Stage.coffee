@@ -31,8 +31,15 @@ class StageRenderer
 		@lastTime = Date.now()
 
 		requestAnimationFrame( @update )
-
+		document.addEventListener('touchstart', this.goFullScreen, true)
 		return
+
+	@fullScreen:()->
+		doc = window.document
+		docEl = doc.documentElement
+		requestFullScreen = docEl.requestFullscreen || docEl.mozRequestFullScreen || docEl.webkitRequestFullScreen || docEl.msRequestFullscreen
+		if(!doc.fullscreenElement && !doc.mozFullScreenElement && !doc.webkitFullscreenElement && !doc.msFullscreenElement)
+			requestFullScreen.call(docEl)
 
 	@update:()=>
 		t = Date.now()
