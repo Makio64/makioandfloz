@@ -8,48 +8,88 @@ header
 	min-height 100%
 	background #000
 	color #FFF
+	padding 20px
 
-	h1,h2,h3,h4,.presentation,li
-		padding 0 10px
+	// h1,h2,h3,h4,.presentation,li
+	// 	padding 0 10px
 
 	h1
 		font-size 24px
-		text-align center
+		text-align left
 		padding 20px 0 10px 0
+		fBold( 48px )
+		span
+			opacity .5
+			font-weight 300
 
 	h2
-		font-size 18px
-		text-align center
-		padding-bottom 20px
+		padding 20px 0 40px 0
 		color #DDD
+		fLight( 16px )
+		letter-spacing 1px
+		opacity .5
 
 	h3
-		font-size 18px
-		padding-top 15px
-		padding-bottom 18px
-		color #CCC
+		margin-top 60px
+		margin-bottom 20px
+		color #DDD
+		fRegular( 18px )
+		letter-spacing 1.5px
 
 	h4
 		font-size 11px
 		padding-bottom 5px
 
 	.presentation
-		font-size 11px
-		text-align justify
-		line-height 15px
+		fLight( 12px )
+		letter-spacing 1px
+		line-height 16px
 		padding-bottom 20px
 		color #CCC
+		span
+			display inline-block
+			padding-top 5px
 
-	a
-		color #AAA
+	.links
+		overflow hidden
+		h4
+			float right
+			display block
+		.first
+			float left
+		.second
+			margin-right 10px
+
+		a
+			color #AAA
+			display inline-block
+			fRegular( 10px )
+			line-height 15px
+			opacity .5
+			text-decoration none
+			border-bottom 1px solid #aaa
+			padding-bottom 2px
+			margin-bottom 4px
+			&:hover
+				opacity 1
 
 	ul
 		width 100%
+		line-height 18px
 		li
 			display block
 			overflow auto
 			a
-				display block
-				padding 5px 10px
-
-				// padding 10px 0
+				position relative
+				display inline-block
+				fRegular( 14px )
+				color #AAA
+				text-decoration none
+				border-bottom 1px solid #aaa
+				padding-bottom 3px
+				margin-bottom 10px
+				opacity .5
+				&:hover
+					opacity 1
+		li.selected a
+			opacity 1

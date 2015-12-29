@@ -16,19 +16,23 @@ html(lang="en")
 		meta(property="og:image", content="facebook.jpg")
 
 		title Makio and Floz - Blog about art & dev
+		link(rel='stylesheet', type='text/css', href='https://fonts.googleapis.com/css?family=Lato:300,400,700')
 		link(rel='stylesheet', href='css/main.css')
 
 	body
 		header
-			h1 Makio&Floz
+			h1 Makio<br /><span>&</span> Floz
 			h2 Blog about Art & Dev
-			p.presentation We are two parisian artists enjoying code, design, art and installation. This blog regroup our thougth, case studies and knowledges about it.
-			h4 
-				a(target="_blank", href="http://floz.com") Floz.com
-				a(target="_blank", href="https://twitter.com/florianzumbrumn").twitter @Florianzumbrumn
-			h4 
-				a(target="_blank", href="http://makiopolis.com") Makiopolis.com
-				a(target="_blank", href="https://twitter.com/makio64").twitter @Makio64 
+			p.presentation We are two parisian artists enjoying code, design, art and installation.<br /><span>This blog regroup our thougth, case studies and knowledges about it.</span>
+			.links
+				h4.first
+					a(target="_blank", href="http://floz.fr") floz.fr
+					br
+					a(target="_blank", href="https://twitter.com/florianzumbrumn").twitter @florianzumbrumn
+				h4.second
+					a(target="_blank", href="http://makiopolis.com") Makiopolis.com
+					br
+					a(target="_blank", href="https://twitter.com/makio64").twitter @Makio64 
 			div.section
 				h3 Case Studies
 				include casestudy-menu.jade
