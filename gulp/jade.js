@@ -5,7 +5,6 @@ var notify 	= require( 'gulp-notify' );
 var plumber = require( 'gulp-plumber' );
 var rename 	= require( 'gulp-rename' );
 var jade 	= require( 'gulp-jade' );
-var data 	= require( 'gulp-data' );
 var argv    = require( 'yargs' ).string('module').argv;
 
 gulp.task( 'jade', function() {
@@ -19,11 +18,8 @@ gulp.task( 'jade', function() {
 	}
 	return gulp.src( path.jade+'**/*.jade' )
 		.pipe( plumber() )
-		.pipe( data({
-			BUNDLE:bundle,
-			MODULE:module
-		}) )
 		.pipe( jade({pretty:true})).on( 'error', notify.onError('Error: <%= error.message %>') )
+		.pipe( plumber.stop() )
 		.pipe( notify({ onLast: true, message:'Jade compile with success!' }) )
 		.pipe( rename( name ) )
 		.pipe( gulp.dest( path.build ) );
