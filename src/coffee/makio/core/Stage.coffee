@@ -9,9 +9,10 @@ Signal 	= require("signals")
 
 class StageRenderer
 
-	@dt 			= 0
 	@lastTime 		= 0
 	@pause 			= false
+	@canSkip		= false
+	@skipLimit		= 32
 
 	@onResize 	= new Signal()
 	@onUpdate 	= new Signal()
@@ -28,7 +29,7 @@ class StageRenderer
 			@onResize.dispatch()
 			return
 
-		@lastTime = Date.now()
+		@lastTime = performance.now()
 
 		requestAnimationFrame( @update )
 		document.addEventListener('touchstart', this.goFullScreen, true)
@@ -42,13 +43,16 @@ class StageRenderer
 			requestFullScreen.call(docEl)
 
 	@update:()=>
-		t = Date.now()
+		t = performance.now()
 		dt = t - @lastTime
 		@lastTime = t
 
 		if @pause then return
 
 		# update logic here
+		if(@canSkip && dt>@skipLimit)
+			return
+		
 		@onUpdate.dispatch(dt)
 
 		# render frame
