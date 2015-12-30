@@ -60,7 +60,7 @@ class Articles extends Scene
 	resize:()=>
 		if(this.iframe)
 			isIos = /ipad|iphone|ipod|iPad|iPhone|iPod/.test(navigator.userAgent)
-			w = window.innerWidth-200
+			w = window.innerWidth-300
 			h = window.innerHeight
 			if( isIos )
 				 w -= 1

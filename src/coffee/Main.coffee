@@ -26,8 +26,13 @@ class Main
 		document.addEventListener('touchstart', @fullScreen, true)
 		return
 
-	onLink:(e)->
+	onLink:(e)=>
 		e.preventDefault()
+
+		if(@selected) then @selected.className = ''
+		@selected = e.target.parentNode
+		@selected.className = 'selected'
+
 		id = e.target.dataset.id
 		page("/blog/"+id)
 		return
