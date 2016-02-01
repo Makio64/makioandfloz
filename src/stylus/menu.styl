@@ -3,22 +3,25 @@ header
 	top 0
 	left 0
 	position fixed
-	width 220px
+	width 300px
 	height 100%
 	min-height 100%
 	background #000
 	color #FFF
 	padding 40px
+	margin-bottom 40px
+	overflow-y auto
+	overflow-x hidden
+	box-sizing border-box
 
 	// h1,h2,h3,h4,.presentation,li
 	// 	padding 0 10px
 
 	a.title
 		text-decoration none
-		
+
 		h1
 			color #FFF
-			font-size 24px
 			text-align left
 			padding 20px 0 10px 0
 			fBold( 48px )
@@ -99,3 +102,17 @@ header
 					opacity 1
 		li.selected a
 			opacity 1
+
+@media (max-width: 600px)
+	header
+		width 100%
+
+@media (max-width: 400px)
+	header
+		padding 20px
+		a.title
+			br
+				display none
+			h1
+				padding-top 10px
+				font-size 28px
