@@ -13,6 +13,9 @@ class Articles extends Scene
 
 	open:(id)->
 		console.clear()
+		# mask
+
+		# wait
 		@createIframe("/articles/#{id}/index.html")
 		@resize()
 		return
@@ -35,7 +38,7 @@ class Articles extends Scene
 		return
 
 	@onReady:()=>
-		# iframe loaded
+		# removeMask
 		doc = @iframe.contentWindow.document
 		HtmlUtils.updateMetaFB(
 			HtmlUtils.getMeta("og:title",doc),
@@ -68,7 +71,6 @@ class Articles extends Scene
 			@iframe.style.height = h + 'px'
 			@iframe.style.width = w + 'px'
 			if(@iframe.contentWindow)
-				# console.log('resize iframe.contentWindow')
 				@iframe.contentWindow.innerWidth = w
 				@iframe.contentWindow.innerHeight = h
 				@iframe.contentWindow.resizeTo(w,h)

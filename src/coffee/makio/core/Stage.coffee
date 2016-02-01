@@ -52,7 +52,7 @@ class StageRenderer
 		# update logic here
 		if(@canSkip && dt>@skipLimit)
 			return
-		
+
 		@onUpdate.dispatch(dt)
 
 		# render frame
