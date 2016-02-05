@@ -23,6 +23,7 @@
         <h1>Case study TREE LINE</h1>
         <div class="by"><a href='https://twitter.com/makio64' target='_blank'> By David Ronai @makio64 - 12.01.2016</a></div>
       </div>
+      <div class="show"></div>
       <div class="slide">
         <h2>Inspiration</h2>
         <p>I recently start living in Japan and illumination for winter are beautiful here. Everywhere you go, you can only be enchanted by it and after I finished my first christmasxp <a href='http://christmasexperiments.com/xps/06/journey/' target='_blank'>"Journey"</a> I wanted to make my own digital version of illuminated tree.</p>
@@ -54,6 +55,7 @@ pos.y = smoothstep(0., dist, distance(pos,vec3(0.))) * height;</code></pre>
         <div id="groundHeight" class="slider">height</div>
         <div id="groundRadius" class="slider">radius</div>
       </div>
+      <div class="show"></div>
       <div class="slide line">
         <h2>Create the shape with line</h2>
         <p>A line is made of points connected togethers and there is many ways to create interesting shape. I was thinking about 3d bezier line but I tested a more simple approach with vector direction give by 2 angles: Phi & Theta. </p>
@@ -82,6 +84,7 @@ pos.y = smoothstep(0., dist, distance(pos,vec3(0.))) * height;</code></pre>
         <div id="epsilonTheta" class="slider">epsilon theta</div>
         <div id="shapeRadius" class="slider">radius</div>
       </div>
+      <div class="show"></div>
       <div class="slide">
         <h2>Animate the line</h2>
         <p>Then I wanted to animate the line, but I got performance issues. I realized it came from the process function of MeshLine witch update all the attributes & recreate the buffer, even optimized/modified to reuse the same buffer & update only prev/next/position attributes it was still too heavy, especially on mobile. So instead of changing the attribute I modified the MeshLineMaterial Shader,added a uniform time & used the width variable as a time offset and not directly as a width. </p>
@@ -94,6 +97,7 @@ w *= smoothstep(uv.x*2.,uv.y*2.+2.,-time*2000.);</code></pre>
         <div id="deltaSpeed" class="slider">deltaSpeed</div>
         <div id="division" class="slider">division</div>
       </div>
+      <div class="show"></div>
       <div class="slide">
         <h2>Making the particles on the tree</h2>
         <p>My next step was to add particles on the three, I push particles on it by getting a random position on the line using linear interpolation & adding positionOffset to particles.</p>
@@ -124,6 +128,7 @@ pos += aOffset*(1.4-smoothstep(0.9, 1., percent));
         <div id="makeNew" class="toogleButton">Anim in/out		</div>
         <p>About optimizing : I clean the shader of particles / line, remove all depth test, use pool objects, reduce the number of particles/line/points by line on mobile.</p>
       </div>
+      <div class="show"></div>
       <div class="slide">
         <h2>Conclusion</h2>
         <p><img src="img/09.jpg"><img src="img/10.jpg"><img src="img/11.jpg"><img src="img/12.jpg"></p>
@@ -131,16 +136,16 @@ pos += aOffset*(1.4-smoothstep(0.9, 1., percent));
         <p>In a technical point of view I learn the uniform limit, particle animation along a path and how to optimize meshline for repeatable movement. This last point is not super friendly but the change is worth it.</p>
         <p>Some link if you wish to learn more about MeshLine & Shaders:
           <ul>
-            <li>- <a href='/another'>Another case study of advanced experiments using MeshLine by @Floz</a></li>
-            <li>- <a href='http://github.com/makio64/' target='_blank'>The source code of the experiments ( coffeescript )</a></li>
-            <li>- <a href='https://github.com/spite/THREE.MeshLine' target='_blank'>The MeshLine repository</a></li>
+            <li>-<a href='/another'>Another case study</a> of advanced experiments using MeshLine by <a href='http://github.com/florianzumbrunn/' target='_blank'>@Floz</a></li>
+            <li>-<a href='http://github.com/makio64/' target='_blank'>The source code of the experiments</a> ( coffeescript )</li>
+            <li>-<a href='https://github.com/spite/THREE.MeshLine' target='_blank'>The MeshLine repository</a></li>
           </ul>
         </p>
-        <p class="thanks">Thank you for reading, if you like it, what about Tweeting it & stay tunes with <a href='http://twitter.com/makio64' target='_blank'>twitter</a>!</p>
+        <p class="thanks">Thank you for reading, if you like it, what about share it & stay tunes with <a href='http://twitter.com/makio64' target='_blank'>twitter</a>!</p>
         <p>Have fun with MeshLine!</p>
       </div>
       <div class="slide">
-        <h2>FIN</h2>
+        <h2 class="fin">FIN</h2>
       </div>
     </div>
     <script type="text/javascript" src="js/bundle.js"></script>

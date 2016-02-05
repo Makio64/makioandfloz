@@ -13,6 +13,7 @@ class Main
 			link.addEventListener('click',@onLink)
 			link.addEventListener('touchstart',@onLink)
 			link.addEventListener('touchend',@onLink)
+		@menu = document.querySelector('header')
 
 		# Page
 		page("/", @onHome)
@@ -29,16 +30,22 @@ class Main
 	onLink:(e)=>
 		e.preventDefault()
 
+		@menu.className = 'article'
+
 		if(@selected) then @selected.className = ''
 		@selected = e.target.parentNode
 		@selected.className = 'selected'
+
 
 		id = e.target.dataset.id
 		page("/blog/"+id)
 		return
 
-	onHome:()->
+	onHome:()=>
 		SceneTraveler.to(new Home())
+		@menu.className = ''
+		if(@selected) then @selected.className = ''
+		@selected = null
 		return
 
 	onArticles:(e)->

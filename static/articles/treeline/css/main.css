@@ -179,103 +179,13 @@ body {
 .credit a {
   color: #262626;
 }
-.topBorder,
-.bottomBorder,
-.leftBorder,
-.rightBorder {
-  position: fixed;
-  background: #fff;
-  z-index: 1000000;
-  -webkit-transform: translate3d(0, 0, 0);
-  -moz-transform: translate3d(0, 0, 0);
-  -o-transform: translate3d(0, 0, 0);
-  -ms-transform: translate3d(0, 0, 0);
-  transform: translate3d(0, 0, 0);
-}
-.topBorder {
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 20px;
-  -webkit-transform-origin: 0 0;
-  -moz-transform-origin: 0 0;
-  -o-transform-origin: 0 0;
-  -ms-transform-origin: 0 0;
-  transform-origin: 0 0;
-}
-.topBorder.hide {
-  -webkit-transform-origin: 50% 0;
-  -moz-transform-origin: 50% 0;
-  -o-transform-origin: 50% 0;
-  -ms-transform-origin: 50% 0;
-  transform-origin: 50% 0;
-}
-.bottomBorder {
-  bottom: 0;
-  left: 0;
-  width: calc(100% - 20px);
-  height: 20px;
-  -webkit-transform-origin: 100% 0;
-  -moz-transform-origin: 100% 0;
-  -o-transform-origin: 100% 0;
-  -ms-transform-origin: 100% 0;
-  transform-origin: 100% 0;
-}
-.bottomBorder.hide {
-  -webkit-transform-origin: 0% 100%;
-  -moz-transform-origin: 0% 100%;
-  -o-transform-origin: 0% 100%;
-  -ms-transform-origin: 0% 100%;
-  transform-origin: 0% 100%;
-}
-.leftBorder {
-  top: 20px;
-  left: 0;
-  width: 20px;
-  height: calc(100% - 40px);
-  -webkit-transform-origin: 0 100%;
-  -moz-transform-origin: 0 100%;
-  -o-transform-origin: 0 100%;
-  -ms-transform-origin: 0 100%;
-  transform-origin: 0 100%;
-}
-.leftBorder.hide {
-  -webkit-transform-origin: 0% 50%;
-  -moz-transform-origin: 0% 50%;
-  -o-transform-origin: 0% 50%;
-  -ms-transform-origin: 0% 50%;
-  transform-origin: 0% 50%;
-}
-.rightBorder {
-  top: 20px;
-  right: 0;
-  width: 20px;
-  height: calc(100% - 20px);
-  -webkit-transform-origin: 0 0;
-  -moz-transform-origin: 0 0;
-  -o-transform-origin: 0 0;
-  -ms-transform-origin: 0 0;
-  transform-origin: 0 0;
-}
-.rightBorder.hide {
-  -webkit-transform-origin: 100% 50%;
-  -moz-transform-origin: 100% 50%;
-  -o-transform-origin: 100% 50%;
-  -ms-transform-origin: 100% 50%;
-  transform-origin: 100% 50%;
-}
-@media (max-width: 500px), (max-height: 500px) {
-  .credit {
-    font-size: 11px;
-  }
-}
 #caseStudy {
   color: #000;
   background: #eee;
   position: absolute;
   top: 0;
   right: 0;
-  width: calc(60% - 20px);
+  width: calc(60%);
   min-height: 100%;
   border-left: 1px solid #111;
   -webkit-box-sizing: border-box;
@@ -349,6 +259,10 @@ body {
   padding-bottom: 20px;
   margin-top: 40px;
 }
+#caseStudy h2.fin {
+  text-align: center;
+  margin-bottom: 80px;
+}
 #caseStudy p,
 #caseStudy pre {
   color: #888;
@@ -357,7 +271,7 @@ body {
 #caseStudy pre {
   font-size: 10px;
   line-height: 1.6em;
-  background: #cfcfcf;
+  background: #e0e0e0;
   padding: 10px 20px;
   margin-bottom: 15px;
   color: #666;
@@ -409,7 +323,7 @@ body {
 }
 #caseStudy .slider {
   cursor: pointer;
-  width: calc(100% - 100px);
+  width: 100%;
   height: 18px;
   position: relative;
   display: inline-block;
@@ -429,7 +343,7 @@ body {
   left: 0;
 }
 #caseStudy .slider .base {
-  background: #ccc;
+  background: #e0e0e0;
 }
 #caseStudy .slider .percent {
   -webkit-transition: all 0.5s ease-out;
@@ -456,69 +370,61 @@ body {
 .three {
   position: fixed;
 }
-.hljs {
-  display: block;
-  overflow-x: auto;
-  padding: 10px;
-  background: #131b29;
+@media (max-width: 900px) {
+  #caseStudy img {
+    width: 33%;
+  }
 }
-.hljs,
-.hljs-tag,
-.hljs-subst {
-  color: #f8f8f2;
+@media (max-width: 800px) {
+  #caseStudy img {
+    width: 50%;
+  }
 }
-.hljs-strong,
-.hljs-emphasis {
-  color: #a8a8a2;
-}
-.hljs-bullet,
-.hljs-quote,
-.hljs-number,
-.hljs-regexp,
-.hljs-literal,
-.hljs-link {
-  color: #ae81ff;
-}
-.hljs-code,
-.hljs-title,
-.hljs-section,
-.hljs-selector-class {
-  color: #a6e22e;
-}
-.hljs-strong {
-  font-weight: bold;
-}
-.hljs-emphasis {
-  font-style: italic;
-}
-.hljs-keyword,
-.hljs-selector-tag,
-.hljs-name,
-.hljs-attr {
-  color: #f92672;
-}
-.hljs-symbol,
-.hljs-attribute {
-  color: #66d9ef;
-}
-.hljs-params,
-.hljs-class .hljs-title {
-  color: #f8f8f2;
-}
-.hljs-string,
-.hljs-type,
-.hljs-built_in,
-.hljs-builtin-name,
-.hljs-selector-id,
-.hljs-selector-attr,
-.hljs-selector-pseudo,
-.hljs-addition,
-.hljs-variable,
-.hljs-template-variable {
-  color: #e6db74;
-}
-.hljs-comment,
-.hljs-deletion,
-.hljs-meta {
-  color: #75715e;
+@media (max-width: 700px) {
+  .three {
+    width: 100%;
+  }
+  .show {
+    width: 100%;
+    padding-top: 120%;
+  }
+  #caseStudy {
+    background: rgba(0,0,0,0.6);
+    width: 100%;
+    color: #fff;
+  }
+  #caseStudy .by,
+  #caseStudy pre,
+  #caseStudy p,
+  #caseStudy li,
+  #caseStudy .slider,
+  #caseStudy a {
+    color: #aaa;
+  }
+  #caseStudy pre {
+    background: rgba(30,30,30,0.9);
+  }
+  #caseStudy img {
+    width: 50%;
+  }
+  #caseStudy .slide {
+    background: rgba(0,0,0,0.7);
+    padding: 5px 20px;
+  }
+  #caseStudy .slider {
+    height: 40px;
+  }
+  #caseStudy .slider .base {
+    background: rgba(30,30,30,0.9);
+  }
+  #caseStudy .slider .percent {
+    background: rgba(40,40,40,0.9);
+  }
+  #caseStudy .slider .text {
+    top: 7px;
+    left: 7px;
+  }
+  #caseStudy .toogleButton {
+    background: rgba(200,200,200,0.9);
+  }
 }

@@ -61,19 +61,19 @@ class Articles extends Scene
 
 	# Manage edge case
 	resize:()=>
-		if(this.iframe)
-			isIos = /ipad|iphone|ipod|iPad|iPhone|iPod/.test(navigator.userAgent)
-			w = window.innerWidth-300
-			h = window.innerHeight
-			if( isIos )
-				 w -= 1
-				 h -= 2
-			@iframe.style.height = h + 'px'
-			@iframe.style.width = w + 'px'
-			if(@iframe.contentWindow)
-				@iframe.contentWindow.innerWidth = w
-				@iframe.contentWindow.innerHeight = h
-				@iframe.contentWindow.resizeTo(w,h)
+		# if(this.iframe)
+			# isIos = /ipad|iphone|ipod|iPad|iPhone|iPod/.test(navigator.userAgent)
+			# w = window.innerWidth-300
+			# h = window.innerHeight
+			# if( isIos )
+			# 	 w -= 1
+			# 	 h -= 2
+			# @iframe.style.height = h + 'px'
+			# @iframe.style.width = w + 'px'
+			# if(@iframe.contentWindow)
+				# @iframe.contentWindow.innerWidth = w
+				# @iframe.contentWindow.innerHeight = h
+				# @iframe.contentWindow.resizeTo(w,h)
 		return
 
 	dispose:()->

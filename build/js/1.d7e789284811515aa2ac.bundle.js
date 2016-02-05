@@ -18,6 +18,7 @@ webpackJsonp([1],[
 
 	Main = (function() {
 	  function Main(callbackLoad) {
+	    this.onHome = bind(this.onHome, this);
 	    this.onLink = bind(this.onLink, this);
 	    var i, len, link, links;
 	    links = document.querySelectorAll('.section a');
@@ -27,6 +28,7 @@ webpackJsonp([1],[
 	      link.addEventListener('touchstart', this.onLink);
 	      link.addEventListener('touchend', this.onLink);
 	    }
+	    this.menu = document.querySelector('header');
 	    page("/", this.onHome);
 	    page("/blog/:id", this.onArticles);
 	    page("*", this.on404);
@@ -39,6 +41,7 @@ webpackJsonp([1],[
 	  Main.prototype.onLink = function(e) {
 	    var id;
 	    e.preventDefault();
+	    this.menu.className = 'article';
 	    if (this.selected) {
 	      this.selected.className = '';
 	    }
@@ -50,6 +53,11 @@ webpackJsonp([1],[
 
 	  Main.prototype.onHome = function() {
 	    SceneTraveler.to(new Home());
+	    this.menu.className = '';
+	    if (this.selected) {
+	      this.selected.className = '';
+	    }
+	    this.selected = null;
 	  };
 
 	  Main.prototype.onArticles = function(e) {
@@ -1524,25 +1532,7 @@ webpackJsonp([1],[
 	    Articles.__super__.transitionOut.call(this);
 	  };
 
-	  Articles.prototype.resize = function() {
-	    var h, isIos, w;
-	    if (this.iframe) {
-	      isIos = /ipad|iphone|ipod|iPad|iPhone|iPod/.test(navigator.userAgent);
-	      w = window.innerWidth - 300;
-	      h = window.innerHeight;
-	      if (isIos) {
-	        w -= 1;
-	        h -= 2;
-	      }
-	      this.iframe.style.height = h + 'px';
-	      this.iframe.style.width = w + 'px';
-	      if (this.iframe.contentWindow) {
-	        this.iframe.contentWindow.innerWidth = w;
-	        this.iframe.contentWindow.innerHeight = h;
-	        this.iframe.contentWindow.resizeTo(w, h);
-	      }
-	    }
-	  };
+	  Articles.prototype.resize = function() {};
 
 	  Articles.prototype.dispose = function() {};
 
