@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, width=device-width, minimal-ui">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta property="og:site_name" content="Case study - Tree Lines">
+    <meta property="og:title" content="Case study - Tree Lines">
+    <meta property="og:description" content="Case study - Tree Lines">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="">
+    <meta property="og:image" content="./facebook.jpg">
+    <title>Case study - Tree Lines</title>
+    <!-- build:css css/main.css-->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="css/main.css">
+    <!-- endbuild-->
+  </head>
+  <body>
+    <div id="caseStudy">
+      <div class="slide">
+        <h1>Case study TREE LINE</h1>
+        <div class="by"><a href='https://twitter.com/makio64' target='_blank'> By David Ronai @makio64 - 12.01.2016</a></div>
+      </div>
+      <div class="slide">
+        <h2>Inspiration</h2>
+        <p>I recently start living in Japan and illumination for winter are beautiful here. Everywhere you go, you can only be enchanted by it and after I finished my first christmasxp <a href='http://christmasexperiments.com/xps/06/journey/' target='_blank'>"Journey"</a> I wanted to make my own digital version of illuminated tree.</p>
+      </div>
+      <div class="slide">
+        <h2>Work organisation </h2>
+        <p>After sketching my idea on paper I cut the work in fews simple points :</p>
+        <ul>
+          <li>I. Create the particle ground</li>
+          <li>II. Create simple shape with line</li>
+          <li>III. Add particles on the line</li>
+          <li>IV. Improving the shape</li>
+          <li>V. Making it move</li>
+          <li>VI. Add interaction & Optimize	</li>
+        </ul>
+        <p>Below some screenshots taken during the creation process</p>
+        <p><img src="img/01.jpg"><img src="img/02.jpg"><img src="img/03.jpg"><img src="img/04.jpg"><img src="img/05.jpg"><img src="img/06.jpg"><img src="img/07.jpg"><img src="img/08.jpg"></p>
+      </div>
+      <div class="slide ground">
+        <h2>The ground</h2>
+        <p>I wanted to use Particle to represent the ground. For performance issue everything is directly managed in the vertex shader and each particle has 3 attributes: with vector direction given by 2 angles: Phi & Theta.</p>
+        <pre><code class="glsl">float t = (time+aTime)/100.;
+float theta = aAngle.y + aTime;
+float phi = aAngle.x + sin(aSpeed*t)*.5;
+pos.x = aAngle.z * sin( phi ) * cos( theta ) * radius;
+pos.z = aAngle.z * sin( phi ) * sin( theta ) * radius;
+pos.y = smoothstep(0., dist, distance(pos,vec3(0.))) * height;</code></pre>
+        <div id="groundDistance" class="slider">dist</div>
+        <div id="groundHeight" class="slider">height</div>
+        <div id="groundRadius" class="slider">radius</div>
+      </div>
+      <div class="slide line">
+        <h2>Create the shape with line</h2>
+        <p>A line is made of points connected togethers and there is many ways to create interesting shape. I was thinking about 3d bezier line but I tested a more simple approach with vector direction give by 2 angles: Phi & Theta. </p>
+        <p>By adding an epsilon phi / theta to the previous vector, move in this direction & repeat it X times I get interesting shape, close from my sketch, so I keep it.</p>
+        <pre><code class="javascript">function createShape(epsilonTheta,epsilonPhi,radius) {
+
+	var steps = 150
+	var positions = new Float32Array( steps*3 )
+	var z = 0, x = 0, y = .5, phi = 0, theta = Math.PI*2*Math.random()
+
+	for(j=0; j < steps*3; j+=3){
+		positions[ j ] = x
+		positions[ j + 1 ] = y
+		positions[ j + 2 ] = z
+		
+		x += radius * Math.sin( phi ) * Math.cos( theta )
+		y += radius * Math.cos( phi )
+		z += radius * Math.sin( phi ) * Math.sin( theta )
+		phi += epsilonPhi
+		theta += epsilonTheta
+	}
+	return positions
+}</code></pre>
+        <p>To represent the line I used <a href='https://github.com/spite/THREE.MeshLine' target='_blank'>MeshLine</a> from <a href='https://twitter.com/thespite' target='_blank'>@thespite</a> and I'm globally very satisphied even if animation part was tricky as we will see after. The basic idea was to create the different branch and making change a bit the parameters from one to another, try it!</p>
+        <div id="epsilonPhi" class="slider">epsilon phi</div>
+        <div id="epsilonTheta" class="slider">epsilon theta</div>
+        <div id="shapeRadius" class="slider">radius</div>
+      </div>
+      <div class="slide">
+        <h2>Animate the line</h2>
+        <p>Then I wanted to animate the line, but I got performance issues. I realized it came from the process function of MeshLine witch update all the attributes & recreate the buffer, even optimized/modified to reuse the same buffer & update only prev/next/position attributes it was still too heavy, especially on mobile. So instead of changing the attribute I modified the MeshLineMaterial Shader,added a uniform time & used the width variable as a time offset and not directly as a width. </p>
+        <p>I also played with smoothstep & uv to reduce the width at the start & end of the line.</p>
+        <pre><code class="glsl">//- w is the width
+float w = 1.8 * pixelWidth * lineWidth * sin(width+time)*(1.-smoothstep(.9,1.,uv.x*1.));
+w *= smoothstep(uv.x*2.,uv.y*2.+2.,-time*2000.);</code></pre>
+        <p>& the width is given by this formula :</p>
+        <pre><code class="javascript">line.setGeometry( geometry,function(p){ return p*division })</code></pre>
+        <div id="deltaSpeed" class="slider">deltaSpeed</div>
+        <div id="division" class="slider">division</div>
+      </div>
+      <div class="slide">
+        <h2>Making the particles on the tree</h2>
+        <p>My next step was to add particles on the three, I push particles on it by getting a random position on the line using linear interpolation & adding positionOffset to particles.</p>
+        <div id="particleOnly" class="toogleButton">Show particle only</div>
+        <p>Well.. Again make it move was much more tricky :D</p>
+        <p>I couldn’t set their position anymore with javascript for performance issue, so I did it in the vertex shader by passing the line path ( the array of points composing the line ) as a uniform and a aTime as attribute on each particle. The problem I encountered is the limit of the number of uniforms in a vertex shader ( apparently 512 ). To avoid it I simplify the line path by using less points.</p>
+        <p>The exact number of point use was set in javascript and add dynamically as uniforms at the start of my shader. Its now between 100 to 200points.</p>
+        <pre><code class="glsl">float t = (time+aTime*50.)/80.;
+float i = mod(t, pathLength)+1.;
+float percent = i/pathLength;
+float extra = mod(i,1.);
+
+//- current index on path
+int ii = int(floor(i));
+
+//- linear interpolation with the previous point on path
+pos = (1.-extra)*path[ii-1] + extra*path[ii];
+
+//- reduce the offset position on the end so it converge to the same point ( but still 40% different )
+pos += aOffset*(1.4-smoothstep(0.9, 1., percent));
+</code></pre>
+        <p>Made the particle disappear smoothly at the end</p>
+        <pre><code class="glsl">alpha *= 1.-smoothstep(0.98, 1., percent);</code></pre>
+      </div>
+      <div class="slide">
+        <h2>Appear/Disapear/Optimisation</h2>
+        <p>To made it appear / disappear like its coming from the ground, I play with the alpha and add a “hide” variable to control it. Also I inverse & accelerate the delta time when it should hide so it feel the line are coming back. Finally I make the branch coming one by one every 50ms so its softer than all appear together and also more interesting.</p>
+        <div id="makeNew" class="toogleButton">Anim in/out		</div>
+        <p>About optimizing : I clean the shader of particles / line, remove all depth test, use pool objects, reduce the number of particles/line/points by line on mobile.</p>
+      </div>
+      <div class="slide">
+        <h2>Conclusion</h2>
+        <p><img src="img/09.jpg"><img src="img/10.jpg"><img src="img/11.jpg"><img src="img/12.jpg"></p>
+        <p>I'm happy with the visual result of this experiment & I have fun experimenting with Meshline. </p>
+        <p>In a technical point of view I learn the uniform limit, particle animation along a path and how to optimize meshline for repeatable movement. This last point is not super friendly but the change is worth it.</p>
+        <p>Some link if you wish to learn more about MeshLine & Shaders:
+          <ul>
+            <li>- <a href='/another'>Another case study of advanced experiments using MeshLine by @Floz</a></li>
+            <li>- <a href='http://github.com/makio64/' target='_blank'>The source code of the experiments ( coffeescript )</a></li>
+            <li>- <a href='https://github.com/spite/THREE.MeshLine' target='_blank'>The MeshLine repository</a></li>
+          </ul>
+        </p>
+        <p class="thanks">Thank you for reading, if you like it, what about Tweeting it & stay tunes with <a href='http://twitter.com/makio64' target='_blank'>twitter</a>!</p>
+        <p>Have fun with MeshLine!</p>
+      </div>
+      <div class="slide">
+        <h2>FIN</h2>
+      </div>
+    </div>
+    <script type="text/javascript" src="js/bundle.js"></script>
+  </body>
+</html>
