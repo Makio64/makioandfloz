@@ -21,7 +21,7 @@
     <div id="caseStudy">
       <div class="slide">
         <h1>Case study TREE LINE</h1>
-        <div class="by"><a href='https://twitter.com/makio64' target='_blank'> By David Ronai @makio64 - 12.01.2016</a></div>
+        <div class="by"><a href='https://twitter.com/makio64' target='_blank'>By David Ronai @makio64 - 12.01.2016</a></div>
       </div>
       <div class="show"></div>
       <div class="slide">
@@ -83,6 +83,7 @@ pos.y = smoothstep(0., dist, distance(pos,vec3(0.))) * height;</code></pre>
         <div id="epsilonPhi" class="slider">epsilon phi</div>
         <div id="epsilonTheta" class="slider">epsilon theta</div>
         <div id="shapeRadius" class="slider">radius</div>
+        <div id="lineWidth" class="slider">lineWidth</div>
       </div>
       <div class="show"></div>
       <div class="slide">
@@ -123,29 +124,30 @@ pos += aOffset*(1.4-smoothstep(0.9, 1., percent));
         <pre><code class="glsl">alpha *= 1.-smoothstep(0.98, 1., percent);</code></pre>
       </div>
       <div class="slide">
-        <h2>Appear/Disapear/Optimisation</h2>
+        <h2>Appear/Disapear/Optimization</h2>
         <p>To made it appear / disappear like its coming from the ground, I play with the alpha and add a “hide” variable to control it. Also I inverse & accelerate the delta time when it should hide so it feel the line are coming back. Finally I make the branch coming one by one every 50ms so its softer than all appear together and also more interesting.</p>
         <div id="makeNew" class="toogleButton">Anim in/out		</div>
-        <p>About optimizing : I clean the shader of particles / line, remove all depth test, use pool objects, reduce the number of particles/line/points by line on mobile.</p>
+        <p>Optimization : In addition to the previous optimization I removed all depth test, used <a href='https://github.com/Makio64/treeline_casestudy/blob/master/src/coffee/makio/core/ObjectPool.coffee' target='_blank'>objects pool</a> & reduced the number of particles/line/points on mobile.</p>
       </div>
       <div class="show"></div>
-      <div class="slide">
+      <div class="slide conclusion">
         <h2>Conclusion</h2>
-        <p><img src="img/09.jpg"><img src="img/10.jpg"><img src="img/11.jpg"><img src="img/12.jpg"></p>
+        <p><img src="img/09.jpg"><img src="img/10.jpg"><img src="img/11.jpg"><img src="img/13.jpg"></p>
         <p>I'm happy with the visual result of this experiment & I have fun experimenting with Meshline. </p>
         <p>In a technical point of view I learn the uniform limit, particle animation along a path and how to optimize meshline for repeatable movement. This last point is not super friendly but the change is worth it.</p>
         <p>Some link if you wish to learn more about MeshLine & Shaders:
           <ul>
             <li>-<a href='/another'>Another case study</a> of advanced experiments using MeshLine by <a href='http://github.com/florianzumbrunn/' target='_blank'>@Floz</a></li>
-            <li>-<a href='http://github.com/makio64/' target='_blank'>The source code of the experiments</a> ( coffeescript )</li>
+            <li>-<a href='https://github.com/Makio64/treeline_casestudy' target='_blank'>The source code of this case study</a> ( coffeescript )</li>
+            <li>-Musical experiment using MeshLine: <a href='http://makiopolis.com/everyday/026/' target='_blank'>Baby</a> / <a href='http://makiopolis.com/everyday/025/' target='_blank'>Happy monday</a></li>
             <li>-<a href='https://github.com/spite/THREE.MeshLine' target='_blank'>The MeshLine repository</a></li>
           </ul>
         </p>
-        <p class="thanks">Thank you for reading, if you like it, what about share it & stay tunes with <a href='http://twitter.com/makio64' target='_blank'>twitter</a>!</p>
-        <p>Have fun with MeshLine!</p>
+        <p class="thanks">Thank you for reading, if you like it, what about share it & stay tune on <a href='https://twitter.com/makio64' target='_blank'>twitter</a> ?</p>
       </div>
+      <div class="show"></div>
       <div class="slide">
-        <h2 class="fin">FIN</h2>
+        <h2 class="fin">Have fun & Experiment!</h2>
       </div>
     </div>
     <script type="text/javascript" src="js/bundle.js"></script>
