@@ -20,6 +20,7 @@ header
 	a.title
 		text-decoration none
 
+
 		h1
 			color #FFF
 			text-align left
@@ -69,17 +70,34 @@ header
 			margin-right 10px
 
 		a
-			color #AAA
+			color #666
 			display inline-block
 			fRegular( 10px )
 			line-height 15px
-			opacity .5
 			text-decoration none
-			border-bottom 1px solid #aaa
+			border-bottom 1px solid #666
 			padding-bottom 2px
 			margin-bottom 4px
+			text-decoration none
+			position relative
+			&:after
+				content:''
+				position:absolute
+				display block
+				width calc(100% + 3px)
+				height 100%
+				top 1px
+				background #FFF
+				transition all 0.25s
+				transform scaleX(0)
+				transform-origin top left
+				z-index -1
+				left -3px
+
 			&:hover
-				opacity 1
+				color #000
+				&:after
+					transform scaleX(1)
 
 	ul
 		width 100%
@@ -100,6 +118,25 @@ header
 				opacity .5
 				&:hover
 					opacity 1
+
+				&:after
+					content:''
+					position:absolute
+					display block
+					width calc(100% + 3px)
+					height 100%
+					top 0
+					background #FFF
+					transition all 0.25s
+					transform scaleX(0)
+					transform-origin top left
+					z-index -1
+					left -3px
+
+				&:hover
+					color #000
+					&:after
+						transform scaleX(1)
 
 		li.selected a
 			opacity 1
