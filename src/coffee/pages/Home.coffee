@@ -13,13 +13,17 @@ class Home extends Scene
 		HtmlUtils.updateMetaFB(title,description,url,image)
 		return
 
-	# transitionIn:()->
-	# 	# Animate
-	# 	return
+	transitionIn:()->
+		document.querySelector('header').className = ''
+		super()
+		return
 	#
-	# transitionOut:()->
-	# 	# Animate
-	# 	return
+	onTransitionOutComplete:()->
+		# Animate
+		console.log('hmm')
+		document.querySelector('header').className = 'article'
+		super()
+		return
 
 	# Manage edge case
 	resize:()->

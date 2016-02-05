@@ -14,6 +14,7 @@ class Main
 			link.addEventListener('touchstart',@onLink)
 			link.addEventListener('touchend',@onLink)
 		@menu = document.querySelector('header')
+		@mask = document.querySelector('#mask')
 
 		# Page
 		page("/", @onHome)
@@ -30,7 +31,7 @@ class Main
 	onLink:(e)=>
 		e.preventDefault()
 
-		@menu.className = 'article'
+		# @menu.className = 'article'
 
 		if(@selected) then @selected.className = ''
 		@selected = e.target.parentNode
@@ -43,7 +44,6 @@ class Main
 
 	onHome:()=>
 		SceneTraveler.to(new Home())
-		@menu.className = ''
 		if(@selected) then @selected.className = ''
 		@selected = null
 		return

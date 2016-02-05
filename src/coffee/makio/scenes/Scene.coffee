@@ -69,18 +69,30 @@ class Scene
 	update:(dt)->
 		return
 
-	transitionIn:()->
+	transitionIn:()=>
 		@onTransitionInComplete()
 		return
 
-	transitionOut:()->
-		@onTransitionOutComplete()
+	transitionOut:()=>
+		document.querySelector('#mask').className = 'transitionIn'
+		setTimeout(
+			()=>
+				setTimeout(
+					()=>
+						document.querySelector('#mask').className = 'transitionOut'
+					,64
+				)
+				@onTransitionOutComplete()
+				return
+			,510
+		)
+
 		return
 
-	onTransitionInComplete:()->
+	onTransitionInComplete:()=>
 		return
 
-	onTransitionOutComplete:()->
+	onTransitionOutComplete:()=>
 		# Dont dispose scene for this XP
 		@dispose()
 		SceneTraveler.onTransitionOutComplete()

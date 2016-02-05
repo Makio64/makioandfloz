@@ -29,6 +29,7 @@ webpackJsonp([1],[
 	      link.addEventListener('touchend', this.onLink);
 	    }
 	    this.menu = document.querySelector('header');
+	    this.mask = document.querySelector('#mask');
 	    page("/", this.onHome);
 	    page("/blog/:id", this.onArticles);
 	    page("*", this.on404);
@@ -41,7 +42,6 @@ webpackJsonp([1],[
 	  Main.prototype.onLink = function(e) {
 	    var id;
 	    e.preventDefault();
-	    this.menu.className = 'article';
 	    if (this.selected) {
 	      this.selected.className = '';
 	    }
@@ -53,7 +53,6 @@ webpackJsonp([1],[
 
 	  Main.prototype.onHome = function() {
 	    SceneTraveler.to(new Home());
-	    this.menu.className = '';
 	    if (this.selected) {
 	      this.selected.className = '';
 	    }
@@ -1278,6 +1277,17 @@ webpackJsonp([1],[
 	    return;
 	  }
 
+	  Home.prototype.transitionIn = function() {
+	    document.querySelector('header').className = '';
+	    Home.__super__.transitionIn.call(this);
+	  };
+
+	  Home.prototype.onTransitionOutComplete = function() {
+	    console.log('hmm');
+	    document.querySelector('header').className = 'article';
+	    Home.__super__.onTransitionOutComplete.call(this);
+	  };
+
 	  Home.prototype.resize = function() {};
 
 	  Home.prototype.dispose = function() {};
@@ -1293,13 +1303,18 @@ webpackJsonp([1],[
 /* 7 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var Scene, SceneTraveler;
+	var Scene, SceneTraveler,
+	  bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
 
 	SceneTraveler = __webpack_require__(5);
 
 	Scene = (function() {
 	  function Scene(name) {
 	    this.name = name;
+	    this.onTransitionOutComplete = bind(this.onTransitionOutComplete, this);
+	    this.onTransitionInComplete = bind(this.onTransitionInComplete, this);
+	    this.transitionOut = bind(this.transitionOut, this);
+	    this.transitionIn = bind(this.transitionIn, this);
 	    this.states = [];
 	    this.startTime = 0;
 	    this.lastTimeCheck = -1;
@@ -1377,7 +1392,15 @@ webpackJsonp([1],[
 	  };
 
 	  Scene.prototype.transitionOut = function() {
-	    this.onTransitionOutComplete();
+	    document.querySelector('#mask').className = 'transitionIn';
+	    setTimeout((function(_this) {
+	      return function() {
+	        setTimeout(function() {
+	          return document.querySelector('#mask').className = 'transitionOut';
+	        }, 64);
+	        _this.onTransitionOutComplete();
+	      };
+	    })(this), 510);
 	  };
 
 	  Scene.prototype.onTransitionInComplete = function() {};
@@ -1494,7 +1517,6 @@ webpackJsonp([1],[
 	  }
 
 	  Articles.prototype.open = function(id) {
-	    console.clear();
 	    this.createIframe("/articles/" + id + "/index.html");
 	    this.resize();
 	  };
@@ -1507,6 +1529,7 @@ webpackJsonp([1],[
 	    this.iframe.src = url;
 	    this.iframe.className = 'article';
 	    this.iframe.setAttribute('allowFullScreen', 'true');
+	    this.iframe.className = 'hide introIn';
 	    document.body.appendChild(this.iframe);
 	  };
 
@@ -1514,7 +1537,6 @@ webpackJsonp([1],[
 	    this.iframe.innerHTML = "";
 	    document.body.removeChild(this.iframe);
 	    this.iframe = null;
-	    console.clear();
 	  };
 
 	  Articles.onReady = function() {
@@ -1524,17 +1546,20 @@ webpackJsonp([1],[
 	  };
 
 	  Articles.prototype.transitionIn = function() {
+	    this.iframe.className = '';
 	    Articles.__super__.transitionIn.call(this);
 	  };
 
 	  Articles.prototype.transitionOut = function() {
-	    this.destroyIframe();
+	    this.iframe.className = 'introIn';
 	    Articles.__super__.transitionOut.call(this);
 	  };
 
 	  Articles.prototype.resize = function() {};
 
-	  Articles.prototype.dispose = function() {};
+	  Articles.prototype.dispose = function() {
+	    this.destroyIframe();
+	  };
 
 	  return Articles;
 

@@ -12,10 +12,6 @@ class Articles extends Scene
 		return
 
 	open:(id)->
-		console.clear()
-		# mask
-
-		# wait
 		@createIframe("/articles/#{id}/index.html")
 		@resize()
 		return
@@ -27,14 +23,15 @@ class Articles extends Scene
 		@iframe.src = url
 		@iframe.className = 'article'
 		@iframe.setAttribute('allowFullScreen', 'true')
+		@iframe.className = 'hide introIn'
 		document.body.appendChild(this.iframe)
 		return
 
 	destroyIframe:()->
 		@iframe.innerHTML = ""
-		document.body.removeChild(@iframe)
+		if(@iframe.parentNode)
+			document.body.removeChild(@iframe)
 		@iframe = null
-		console.clear()
 		return
 
 	@onReady:()=>
@@ -49,13 +46,13 @@ class Articles extends Scene
 		return
 
 	transitionIn:()->
+		@iframe.className = ''
 		super()
-		# Animate
 		return
 
 	transitionOut:()->
 		# Animate
-		@destroyIframe()
+		@iframe.className = 'introIn'
 		super()
 		return
 
@@ -77,6 +74,7 @@ class Articles extends Scene
 		return
 
 	dispose:()->
+		@destroyIframe()
 		return
 
 module.exports = Articles

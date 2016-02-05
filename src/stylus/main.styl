@@ -1,5 +1,3 @@
-//main .styl
-
 @import 'nib'
 @import 'core'
 
@@ -28,5 +26,39 @@ iframe
 	position absolute
 	top 0
 	left 300px
+	transition transform 1s cubic-bezier(0.215, 0.610, 0.355, 1.000)
+	transition-delay .2s
+	&.hide
+		display none
+		// top 100%
+	&.introIn
+		transition transform .45s cubic-bezier(0.550, 0.085, 0.680, 0.530)
+		transform scale(0.7,0.7)
+
+#mask
+	z-index 10000000
+	width calc(100% - 300px)
+	height 100%
+	min-height 100%
+	background #000
+	position absolute
+	// display none
+	top 0
+	left 300px
+	transform scaleX(0)
+	transform-origin top left
+	transition transform .5s cubic-bezier(0.250, 0.460, 0.450, 0.940)
+	&.transitionIn
+		transition-delay .1s
+		transition transform .4s cubic-bezier(0.895, 0.030, 0.685, 0.220)
+		transform scaleX(1)
+	&.transitionOut
+		transform scaleX(0)
+		transform-origin top right
+
+@media (max-width: 700px)
+	#mask
+		left 0
+		width 100%
 
 @import 'menu.styl'
