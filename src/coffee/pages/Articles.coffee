@@ -46,7 +46,12 @@ class Articles extends Scene
 		return
 
 	transitionIn:()->
-		@iframe.className = ''
+		@iframe.className = 'introIn'
+		setTimeout(
+			()=>
+				@iframe.className = ''
+			,1
+		)
 		super()
 		return
 
