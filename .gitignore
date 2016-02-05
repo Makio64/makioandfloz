@@ -6,5 +6,4 @@ Thumbs.db
 .DS_Store
 **/*.log
 **/*.blend?
-build/
 dist/
