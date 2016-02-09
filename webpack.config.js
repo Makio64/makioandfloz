@@ -3,7 +3,7 @@ var BrowserSyncPlugin = require('browser-sync-webpack-plugin');
 
 var plugins = []
 module.exports = {
-    entry: __dirname+"/src/coffee/Preloader",
+    entry: __dirname+"/src/coffee/Preloader.coffee",
 	output: {
 		path: 'build/js/',
 		filename: 'bundle.js',

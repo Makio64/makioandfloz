@@ -31,29 +31,28 @@ class Main
 	onLink:(e)=>
 		e.preventDefault()
 
-		# @menu.className = 'article'
-
 		if(@selected) then @selected.className = ''
 		@selected = e.target.parentNode
 		@selected.className = 'selected'
 
-
-		id = e.target.dataset.id
-		page("/blog/"+id)
+		page("/blog/"+e.target.dataset.id)
 		return
 
 	onHome:()=>
+		@id = null
 		SceneTraveler.to(new Home())
 		if(@selected) then @selected.className = ''
 		@selected = null
 		return
 
 	onArticles:(e)->
-		id = e.params.id
-		SceneTraveler.to(new Articles(id))
+		if(@id == e.params.id) then return
+		@id = e.params.id
+		SceneTraveler.to(new Articles(@id))
 		return
 
 	on404:()->
+		@id = null
 		SceneTraveler.to(new Error404())
 		return
 
