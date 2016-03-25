@@ -8,6 +8,7 @@ class Articles extends Scene
 	constructor:(id)->
 		super('Article - '+id)
 		Stage.onResize.add(@resize)
+		@isReady = false
 		@open(id)
 		return
 
@@ -18,13 +19,11 @@ class Articles extends Scene
 
 	createIframe:(url)->
 		@iframe = document.createElement('iframe')
-		if (@iframe.contentWindow && @iframe.contentWindow.document.readyState == 'complete')
-			this.iframe.addEventListener('load', @onReady)
 		@iframe.src = url
-		@iframe.className = 'article'
 		@iframe.setAttribute('allowFullScreen', 'true')
-		@iframe.className = 'hide introIn'
-		document.body.appendChild(this.iframe)
+		@iframe.className = 'hide unzoom'
+		Stage.onUpdate.add(@onUpdate)
+		document.body.appendChild(@iframe)
 		return
 
 	destroyIframe:()->
@@ -34,7 +33,7 @@ class Articles extends Scene
 		@iframe = null
 		return
 
-	@onReady:()=>
+	onReady:()=>
 		# removeMask
 		doc = @iframe.contentWindow.document
 		HtmlUtils.updateMetaFB(
@@ -45,21 +44,40 @@ class Articles extends Scene
 		)
 		return
 
+	onUpdate:()=>
+
+		if @iframe.contentWindow
+			doc = @iframe.contentWindow.document
+		else
+			doc = @iframe.document
+
+		if(!doc) then return
+
+		if(document.readyState == 'complete')
+			@onReady()
+			Stage.onUpdate.remove(@onUpdate)
+			@animIn()
+		return
+
 	transitionIn:()->
-		@iframe.className = 'introIn'
-		setTimeout(
-			()=>
-				@iframe.className = ''
-			,1
-		)
+		@animIn()
 		super()
 		return
 
 	transitionOut:()->
-		# Animate
-		@iframe.className = 'introIn'
+		@iframe.className = 'unzoom'
 		super()
 		return
+
+	animIn:()=>
+		if @isReady
+			@iframe.className = 'unzoom'
+			Stage.onUpdate.addOnce ()=>
+				setTimeout(()=>
+					@iframe.className = ''
+				,1)
+		@isReady = true
+
 
 	# Manage edge case
 	resize:()=>

@@ -18,7 +18,7 @@ class Main
 
 		# Page
 		page("/", @onHome)
-		page("/blog/:id", @onArticles)
+		page("/article/:id", @onArticles)
 		page("*", @on404)
 		page()
 
@@ -35,24 +35,24 @@ class Main
 		@selected = e.target.parentNode
 		@selected.className = 'selected'
 
-		page("/blog/"+e.target.dataset.id)
+		page("/article/"+e.target.dataset.id)
 		return
 
 	onHome:()=>
-		@id = null
+		@articleID = null
 		SceneTraveler.to(new Home())
 		if(@selected) then @selected.className = ''
 		@selected = null
 		return
 
 	onArticles:(e)->
-		if(@id == e.params.id) then return
-		@id = e.params.id
-		SceneTraveler.to(new Articles(@id))
+		if(@articleID == e.params.id) then return
+		@articleID = e.params.id
+		SceneTraveler.to(new Articles(@articleID))
 		return
 
 	on404:()->
-		@id = null
+		@articleID = null
 		SceneTraveler.to(new Error404())
 		return
 
