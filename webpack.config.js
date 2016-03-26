@@ -35,7 +35,7 @@ module.exports = {
 			dat: 		__dirname+'/static/vendors/'+"dat.gui.js",
 			page: 		__dirname+'/static/vendors/'+"page.js",
 			isMobile: 	__dirname+'/static/vendors/'+"isMobile.js",
-			TweenMax: 	__dirname+'/static/vendors/'+"TweenMax.js",
+			// TweenMax: 	__dirname+'/static/vendors/'+"TweenMax.js",
 			TweenLite: 	__dirname+'/static/vendors/'+"TweenLite.js",
 		}
 	},
@@ -48,7 +48,7 @@ module.exports = {
 			PIXI: "PIXI",
 			THREE: "THREE",
 			WAGNER: "WAGNER",
-			TweenMax: "TweenMax",
+			// TweenMax: "TweenMax",
 			TweenLite: "TweenLite",
 			dat: "dat",
 			page: "page",

@@ -14,6 +14,8 @@ class Home extends Scene
 		url = "http://makioandfloz.com"
 		HtmlUtils.updateMetaFB(title,description,url,image)
 
+		@_scale = .95
+
 		@_domHome = document.getElementById( "home" )
 
 		@_prepare()
@@ -25,9 +27,11 @@ class Home extends Scene
 	_prepare: () ->
 		@_domsArticles = document.querySelectorAll( ".article-entry" )
 		@_domsImgsArticles = document.querySelectorAll( ".article-entry img" )
-		console.log TweenMax
+
 		for dom, i in @_domsArticles
 			dom.__domImg = @_domsImgsArticles[ i ]
+			dom.__domTextBg = dom.querySelector( ".article-entry-texts-bg" )
+			dom.__domTextTitle = dom.querySelector( ".article-entry-texts-title" )
 			dom.addEventListener( "mouseenter", @_onOver, false )
 			dom.addEventListener( "mouseleave", @_onOut, false )
 
@@ -36,20 +40,59 @@ class Home extends Scene
 		@_loadImgs()
 
 	_onOver: ( e ) =>
-		TweenMax.to( e.target.__domImg, 1, {
+		TweenMax.to( e.target.__domImg, .6, {
 			css: {
-				scale: .9
+				scale: @_scale
 			},
-			ease: Quad.easeInOut
+			ease: Quart.easeInOut
 		} )
+		TweenMax.set( e.target.__domTextBg, {
+			css: {
+				x: "-100%"
+			}
+		} )
+		TweenMax.to( e.target.__domTextBg, .8, {
+			delay: .3,
+			css: {
+				x: "0%"
+			},
+			ease: Quart.easeInOut
+		})
+
+		TweenMax.set( e.target.__domTextTitle, {
+			css: {
+				x: "-100%"
+			}
+		} )
+		TweenMax.to( e.target.__domTextTitle, .8, {
+			delay: .5,
+			css: {
+				x: "0%",
+				alpha: 1
+			},
+			ease: Cubic.easeOut
+		})
 
 	_onOut: ( e ) =>
-		TweenMax.to( e.target.__domImg, 1, {
+		TweenMax.to( e.target.__domImg, .4, {
 			css: {
 				scale: 1
 			},
 			ease: Quad.easeInOut
 		} )
+		TweenMax.to( e.target.__domTextBg, .8, {
+			delay: .2,
+			css: {
+				x: "100%"
+			},
+			ease: Quart.easeInOut
+		})
+		TweenMax.to( e.target.__domTextTitle, .6, {
+			css: {
+				x: "100%"
+			},
+			ease: Cubic.easeIn
+		})
 
 	_loadImgs: () ->
 		for domImg in @_domsImgsArticles
@@ -76,7 +119,7 @@ class Home extends Scene
 		wHolder = Stage.width - 300
 		hHolder = Stage.height / @_countArticles
 		data = uImg.fit( domImg.__img.width, domImg.__img.height, wHolder, hHolder )
-		domImg.style.left = data.x + "px"
+		domImg.style.left = -( hHolder - hHolder * @_scale ) * .5 + "px"
 		domImg.style.top = data.y + "px"
 		domImg.style.width = data.w + "px"
 		domImg.style.height = data.h + "px"
