@@ -1,3 +1,7 @@
 DirectoryIndex /index.html
 
 FallbackResource /index.html
+
+RewriteEngine On
+RewriteCond %{HTTP_HOST} ^makioandfloz.com [NC]
+RewriteRule ^(.*)$ http://www.makioandfloz.com/$1 [L,R=301]

@@ -73,7 +73,7 @@
 /******/ 			script.charset = 'utf-8';
 /******/ 			script.async = true;
 
-/******/ 			script.src = __webpack_require__.p + "" + chunkId + "." + {"1":"cf8b8f574414f05465fd"}[chunkId] + ".bundle.js";
+/******/ 			script.src = __webpack_require__.p + "" + chunkId + "." + {"1":"ef99c030855286f89c24"}[chunkId] + ".bundle.js";
 /******/ 			head.appendChild(script);
 /******/ 		}
 /******/ 	};
@@ -85,7 +85,7 @@
 /******/ 	__webpack_require__.c = installedModules;
 
 /******/ 	// __webpack_public_path__
-/******/ 	__webpack_require__.p = "/js/";
+/******/ 	__webpack_require__.p = "./js/";
 
 /******/ 	// Load entry module and return exports
 /******/ 	return __webpack_require__(0);
