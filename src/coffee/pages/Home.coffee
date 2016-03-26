@@ -31,6 +31,7 @@ class Home extends Scene
 		for dom, i in @_domsArticles
 			dom.__domImg = @_domsImgsArticles[ i ]
 			dom.__domTextBg = dom.querySelector( ".article-entry-texts-bg" )
+			dom.__domTextLine = dom.querySelector( ".article-entry-texts-line" )
 			dom.__domTextTitle = dom.querySelector( ".article-entry-texts-title" )
 			dom.addEventListener( "mouseenter", @_onOver, false )
 			dom.addEventListener( "mouseleave", @_onOut, false )
@@ -59,6 +60,20 @@ class Home extends Scene
 			ease: Quart.easeInOut
 		})
 
+		TweenMax.set( e.target.__domTextLine, {
+			css: {
+				x: "-110%"
+			}
+		} )
+		TweenMax.to( e.target.__domTextLine, .8, {
+			delay: .7,
+			css: {
+				x: "0%",
+				alpha: 1
+			},
+			ease: Cubic.easeOut
+		})
+
 		TweenMax.set( e.target.__domTextTitle, {
 			css: {
 				x: "-100%"
@@ -74,6 +89,10 @@ class Home extends Scene
 		})
 
 	_onOut: ( e ) =>
+		TweenMax.killTweensOf( e.target.__domTextBg )
+		TweenMax.killTweensOf( e.target.__domTextLine )
+		TweenMax.killTweensOf( e.target.__domTextTitle )
+
 		TweenMax.to( e.target.__domImg, .4, {
 			css: {
 				scale: 1
@@ -87,7 +106,14 @@ class Home extends Scene
 			},
 			ease: Quart.easeInOut
 		})
+		TweenMax.to( e.target.__domTextLine, .6, {
+			css: {
+				x: "120%"
+			},
+			ease: Cubic.easeIn
+		})
 		TweenMax.to( e.target.__domTextTitle, .6, {
+			delay: .1,
 			css: {
 				x: "100%"
 			},
