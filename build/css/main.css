@@ -551,7 +551,6 @@ header .backhome:before {
   bottom: 75px;
   display: block;
   height: 110px;
-  overflow: hidden;
 }
 .article-entry-texts span {
   display: block;
@@ -583,12 +582,12 @@ header .backhome:before {
   display: inline-block;
   width: 90%;
   height: 3px;
-  background-color: #666;
-  -webkit-transform-origin: 0 0;
-  -moz-transform-origin: 0 0;
-  -o-transform-origin: 0 0;
-  -ms-transform-origin: 0 0;
-  transform-origin: 0 0;
+  background-color: #000;
+  -webkit-transform-origin: 100% 0;
+  -moz-transform-origin: 100% 0;
+  -o-transform-origin: 100% 0;
+  -ms-transform-origin: 100% 0;
+  transform-origin: 100% 0;
   -webkit-transform: translateX(-100%);
   -moz-transform: translateX(-100%);
   -o-transform: translateX(-100%);

@@ -62,7 +62,8 @@ class Home extends Scene
 
 		TweenMax.set( e.target.__domTextLine, {
 			css: {
-				x: "-110%"
+				x: "-100%",
+				scale: 1
 			}
 		} )
 		TweenMax.to( e.target.__domTextLine, .8, {
@@ -100,22 +101,22 @@ class Home extends Scene
 			ease: Quad.easeInOut
 		} )
 		TweenMax.to( e.target.__domTextBg, .8, {
-			delay: .2,
+			delay: .1,
 			css: {
-				x: "100%"
+				x: "-100%"
 			},
 			ease: Quart.easeInOut
 		})
-		TweenMax.to( e.target.__domTextLine, .6, {
+		TweenMax.to( e.target.__domTextLine, .4, {
 			css: {
-				x: "120%"
+				x: "25%",
+				scaleX: 0
 			},
 			ease: Cubic.easeIn
 		})
 		TweenMax.to( e.target.__domTextTitle, .6, {
-			delay: .1,
 			css: {
-				x: "100%"
+				x: "-100%"
 			},
 			ease: Cubic.easeIn
 		})
