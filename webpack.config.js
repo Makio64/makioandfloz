@@ -29,14 +29,9 @@ module.exports = {
 			__dirname+'/static/vendors/'
 		],
 		alias: {
-			PIXI: 		__dirname+'/static/vendors/'+"pixi.js",
-			THREE: 		__dirname+'/static/vendors/'+"three.js",
-			WAGNER: 	__dirname+'/static/vendors/'+"wagner.js",
 			dat: 		__dirname+'/static/vendors/'+"dat.gui.js",
 			page: 		__dirname+'/static/vendors/'+"page.js",
 			isMobile: 	__dirname+'/static/vendors/'+"isMobile.js",
-			TweenMax: 	__dirname+'/static/vendors/'+"TweenMax.js",
-			TweenLite: 	__dirname+'/static/vendors/'+"TweenLite.js",
 		}
 	},
 	devServer: {
@@ -45,11 +40,6 @@ module.exports = {
 	glsl: { chunkPath: __dirname+'/src/glsl/chunks' },
 	plugins:[
 		new webpack.ProvidePlugin({
-			PIXI: "PIXI",
-			THREE: "THREE",
-			WAGNER: "WAGNER",
-			TweenMax: "TweenMax",
-			TweenLite: "TweenLite",
 			dat: "dat",
 			page: "page",
 			isMobile: "isMobile"
@@ -62,5 +52,9 @@ module.exports = {
 			files:['build/**/*','static/**/*']
 		}),
 		new webpack.optimize.CommonsChunkPlugin({children: true, async: true})
-	]
+	],
+	externals: {
+		'TweenLite': 'TweenLite',
+		'TimelineLite': 'TimelineLite'
+	}
 };

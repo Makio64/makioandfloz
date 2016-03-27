@@ -30,24 +30,36 @@ html(lang="en")
 	body
 		#mask
 		header
-			a(href="/").backhome menu
-			a.title(href="/") 
-				h1 Makio <br /><span>&</span> Floz
-				h2 Blog about Art & Dev
-			p.presentation We are two parisian artists enjoying code, design, art and installation.<br /><span>This blog regroup our thougth & case studies to share our knowledges.</span>
-			.links
-				h4.first
-					a(target="_blank", href="https://twitter.com/makio64").twitter @Makio64 
-					br
-					a(target="_blank", href="https://twitter.com/florianzumbrumn").twitter @florianzumbrumn
-			div.section
-				h3 Case Studies
-				include casestudy-menu.jade
-				
+			.inside
+				a(href="/").backhome menu
+				a.title(href="/") 
+					h1 
+						.mask
+						|Makio <br /><span>&</span> Floz
+					h2 
+						.mask
+						|Blog about Art & Dev
+				.presentation
+					.mask
+					p |We are two parisian artists enjoying code, design, art and installation.<br /><span>This blog regroup our thougth & case studies to share our knowledges.</span>
+						
+				.links
+					h4.first
+						a(target="_blank", href="https://twitter.com/makio64").twitter 
+							.mask
+							|@Makio64 
+						br
+						a(target="_blank", href="https://twitter.com/florianzumbrumn").twitter
+							.mask
+							|@florianzumbrumn
+				.section
+					.mask
+					h3 Case Studies
+					include casestudy-menu.jade
 		#article
-		#home
-			h1 Makio and Floz
-			//- Articles list
-			include all-articles-home.jade
-			
-		script(type='text/javascript', src="js/bundle.js")
+
+		script(type='text/javascript', src='https://cdnjs.cloudflare.com/ajax/libs/gsap/1.18.2/TweenLite.min.js')
+		script(type='text/javascript', src='https://cdnjs.cloudflare.com/ajax/libs/gsap/1.18.2/TimelineLite.min.js')
+		script(type='text/javascript', src='https://cdnjs.cloudflare.com/ajax/libs/gsap/1.18.2/plugins/CSSPlugin.min.js')
+		script(type='text/javascript', src='https://cdnjs.cloudflare.com/ajax/libs/gsap/1.18.2/easing/EasePack.min.js')
+		script(type='text/javascript', src='js/bundle.js')

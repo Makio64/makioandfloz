@@ -13,31 +13,52 @@ header
 	overflow-y auto
 	overflow-x hidden
 	box-sizing border-box
+	visibility: hidden
+
+	.inside
+		position relative
+		height: 100%
+		min-height: 100%
+		overflow: hidden;
 
 	// h1,h2,h3,h4,.presentation,li
 	// 	padding 0 10px
 
-	a.title
-		text-decoration none
+	.mask
+		display block
+		background #FFF
+		position absolute
+		width 100%
+		top 0
+		left 0
+		height 100%
+		transform-origin left
 
+	a.title
+		position relative
+		text-decoration none
+		overflow-x hidden
+		display block
 
 		h1
 			color #FFF
 			text-align left
 			padding 20px 0 10px 0
 			fBold( 48px )
+			position relative
 			span
 				opacity .5
 				font-weight 300
 
 		h2
+			position relative
 			padding 20px 0 40px 0
-			color #DDD
+			color #666
 			fLight( 16px )
 			letter-spacing 1px
-			opacity .5
 
 	h3
+		position relative
 		margin-top 60px
 		margin-bottom 20px
 		color #DDD
@@ -45,16 +66,19 @@ header
 		letter-spacing 1.5px
 
 	h4
+		position relative
 		font-size 11px
 		padding-bottom 5px
 
 
 	.presentation
+		position relative
 		fLight( 12px )
 		letter-spacing 1px
 		line-height 16px
 		padding-bottom 20px
 		color #CCC
+		display block
 		span
 			display inline-block
 			padding-top 5px

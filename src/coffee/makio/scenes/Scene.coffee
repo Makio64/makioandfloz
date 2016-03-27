@@ -33,7 +33,6 @@ class Scene
 				@onTransitionOutComplete()
 			,510
 		)
-
 		return
 
 	onTransitionInComplete:()=>
