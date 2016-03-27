@@ -244,9 +244,33 @@ header {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
+  visibility: hidden;
+}
+header .inside {
+  position: relative;
+  height: 100%;
+  min-height: 100%;
+  overflow: hidden;
+}
+header .mask {
+  display: block;
+  background: #fff;
+  position: absolute;
+  width: 100%;
+  top: 0;
+  left: 0;
+  height: 100%;
+  -webkit-transform-origin: left;
+  -moz-transform-origin: left;
+  -o-transform-origin: left;
+  -ms-transform-origin: left;
+  transform-origin: left;
 }
 header a.title {
+  position: relative;
   text-decoration: none;
+  overflow-x: hidden;
+  display: block;
 }
 header a.title h1 {
   color: #fff;
@@ -255,6 +279,7 @@ header a.title h1 {
   font-family: 'Lato';
   font-size: 48px;
   font-weight: 700;
+  position: relative;
 }
 header a.title h1 span {
   opacity: 0.5;
@@ -263,17 +288,16 @@ header a.title h1 span {
   font-weight: 300;
 }
 header a.title h2 {
+  position: relative;
   padding: 20px 0 40px 0;
-  color: #ddd;
+  color: #666;
   font-family: 'Lato';
   font-size: 16px;
   font-weight: 300;
   letter-spacing: 1px;
-  opacity: 0.5;
-  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
-  filter: alpha(opacity=50);
 }
 header h3 {
+  position: relative;
   margin-top: 60px;
   margin-bottom: 20px;
   color: #ddd;
@@ -283,10 +307,12 @@ header h3 {
   letter-spacing: 1.5px;
 }
 header h4 {
+  position: relative;
   font-size: 11px;
   padding-bottom: 5px;
 }
 header .presentation {
+  position: relative;
   font-family: 'Lato';
   font-size: 12px;
   font-weight: 300;
@@ -294,6 +320,7 @@ header .presentation {
   line-height: 16px;
   padding-bottom: 20px;
   color: #ccc;
+  display: block;
 }
 header .presentation span {
   display: inline-block;
@@ -517,5 +544,105 @@ header .backhome:before {
     padding-top: 10px;
     font-size: 28px;
   }
+}
+#home {
+  position: absolute;
+  min-height: 100%;
+  height: 100%;
+  width: calc(100% - 300px);
+  top: 0;
+  left: 300px;
+}
+.article-entry {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 50%;
+  overflow: hidden;
+}
+.article-entry img {
+  position: relative;
+  display: block;
+  -webkit-transform-origin: 50% 50%;
+  -moz-transform-origin: 50% 50%;
+  -o-transform-origin: 50% 50%;
+  -ms-transform-origin: 50% 50%;
+  transform-origin: 50% 50%;
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  -ms-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+.article-entry-texts {
+  position: absolute;
+  bottom: 75px;
+  display: block;
+  height: 110px;
+}
+.article-entry-texts span {
+  display: block;
+}
+.article-entry-texts-bg {
+  position: absolute;
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+  background-color: #fff;
+  -webkit-transform-origin: 0 0;
+  -moz-transform-origin: 0 0;
+  -o-transform-origin: 0 0;
+  -ms-transform-origin: 0 0;
+  transform-origin: 0 0;
+  -webkit-transform: translateX(-100%);
+  -moz-transform: translateX(-100%);
+  -o-transform: translateX(-100%);
+  -ms-transform: translateX(-100%);
+  transform: translateX(-100%);
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  -ms-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+.article-entry-texts-line {
+  position: absolute;
+  top: 60%;
+  display: inline-block;
+  width: 90%;
+  height: 3px;
+  background-color: #000;
+  -webkit-transform-origin: 100% 0;
+  -moz-transform-origin: 100% 0;
+  -o-transform-origin: 100% 0;
+  -ms-transform-origin: 100% 0;
+  transform-origin: 100% 0;
+  -webkit-transform: translateX(-100%);
+  -moz-transform: translateX(-100%);
+  -o-transform: translateX(-100%);
+  -ms-transform: translateX(-100%);
+  transform: translateX(-100%);
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  -ms-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+.article-entry-texts-title {
+  position: relative;
+  display: inline-block;
+  font-family: 'Lato';
+  font-size: 64px;
+  font-weight: 300;
+  line-height: 106px;
+  letter-spacing: 8px;
+  color: #000;
+  padding: 0 110px 0 40px;
+  -webkit-transform: translateX(-100%);
+  -moz-transform: translateX(-100%);
+  -o-transform: translateX(-100%);
+  -ms-transform: translateX(-100%);
+  transform: translateX(-100%);
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  -ms-backface-visibility: hidden;
+  backface-visibility: hidden;
 }
 /*# sourceMappingURL=main.css.map */

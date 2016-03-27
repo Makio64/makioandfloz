@@ -19,29 +19,44 @@
     <meta name="twitter:image" content="http://makioandfloz.com/twitter.jpg">
     <title>Makio and Floz - Blog about art & dev</title>
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Lato:300,400,700">
-    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="css/main.css">
   </head>
   <body>
     <div id="mask"></div>
-    <header><a href="/" class="backhome">menu</a><a href="/" class="title">
-        <h1>Makio <br /><span>&</span> Floz</h1>
-        <h2>Blog about Art & Dev</h2></a>
-      <p class="presentation">We are two parisian artists enjoying code, design, art and installation.<br /><span>This blog regroup our thougth & case studies to share our knowledges.</span></p>
-      <div class="links">
-        <h4 class="first"><a target="_blank" href="https://twitter.com/makio64" class="twitter">@Makio64 </a><br><a target="_blank" href="https://twitter.com/florianzumbrumn" class="twitter">@florianzumbrumn</a></h4>
-      </div>
-      <div class="section">
-        <h3>Case Studies</h3>
-        <ul>
-          <li><a href="/blog/treeline" data-id="treeline">Treelines</a></li>
-          <li><a href="/blog/dear-xmas" data-id="dear-xmas">Dear Xmas</a></li>
-        </ul>
+    <header>
+      <div class="inside"><a href="/" class="backhome">menu</a><a href="/" class="title"> 
+          <h1> 
+            <div class="mask"></div>Makio <br /><span>&</span> Floz
+          </h1>
+          <h2> 
+            <div class="mask"></div>Blog about Art & Dev
+          </h2></a>
+        <div class="presentation">
+          <div class="mask"></div>
+          <p>|We are two parisian artists enjoying code, design, art and installation.<br /><span>This blog regroup our thougth & case studies to share our knowledges.</span></p>
+        </div>
+        <div class="links">
+          <h4 class="first"><a target="_blank" href="https://twitter.com/makio64" class="twitter"> 
+              <div class="mask"></div>@Makio64 </a><br><a target="_blank" href="https://twitter.com/florianzumbrumn" class="twitter">
+              <div class="mask"></div>@florianzumbrumn</a></h4>
+        </div>
+        <div class="section">
+          <div class="mask"></div>
+          <h3>Case Studies</h3>
+          <ul>
+            <li><a href="/blog/treeline" data-id="treeline">Treelines</a></li>
+            <li><a href="/blog/deer-xmas" data-id="deer-xmas">Dear Xmas</a></li>
+          </ul>
+        </div>
       </div>
     </header>
     <div id="article"></div>
-    <div id="home">
-      <h1>Makio and Floz</h1>
+    <div id="home"><a href="/blog/deerxmas" class="article-entry"><img data-src="imgs/article-deerxmas.jpg"><span class="article-entry-texts"><span class="article-entry-texts-bg"></span><span class="article-entry-texts-line"></span><span class="article-entry-texts-title">DEER XMAS</span></span></a><a href="/blog/treeline" class="article-entry"><img data-src="imgs/article-treeline.jpg"><span class="article-entry-texts"><span class="article-entry-texts-bg"></span><span class="article-entry-texts-line"></span><span class="article-entry-texts-title">TREELINE</span></span></a>
     </div>
-    <script type="text/javascript" src="/js/bundle.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.18.2/TweenLite.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.18.2/TimelineLite.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.18.2/plugins/CSSPlugin.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.18.2/easing/EasePack.min.js"></script>
+    <script type="text/javascript" src="js/bundle.js"></script>
   </body>
 </html>
