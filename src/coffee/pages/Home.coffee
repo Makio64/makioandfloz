@@ -41,18 +41,18 @@ class Home extends Scene
 		@_loadImgs()
 
 	_onOver: ( e ) =>
-		TweenMax.to( e.target.__domImg, .6, {
+		TweenLite.to( e.target.__domImg, .6, {
 			css: {
 				scale: @_scale
 			},
 			ease: Quart.easeInOut
 		} )
-		TweenMax.set( e.target.__domTextBg, {
+		TweenLite.set( e.target.__domTextBg, {
 			css: {
 				x: "-100%"
 			}
 		} )
-		TweenMax.to( e.target.__domTextBg, .8, {
+		TweenLite.to( e.target.__domTextBg, .8, {
 			delay: .3,
 			css: {
 				x: "0%"
@@ -60,13 +60,13 @@ class Home extends Scene
 			ease: Quart.easeInOut
 		})
 
-		TweenMax.set( e.target.__domTextLine, {
+		TweenLite.set( e.target.__domTextLine, {
 			css: {
 				x: "-100%",
 				scale: 1
 			}
 		} )
-		TweenMax.to( e.target.__domTextLine, .8, {
+		TweenLite.to( e.target.__domTextLine, .8, {
 			delay: .7,
 			css: {
 				x: "0%",
@@ -75,12 +75,12 @@ class Home extends Scene
 			ease: Cubic.easeOut
 		})
 
-		TweenMax.set( e.target.__domTextTitle, {
+		TweenLite.set( e.target.__domTextTitle, {
 			css: {
 				x: "-100%"
 			}
 		} )
-		TweenMax.to( e.target.__domTextTitle, .8, {
+		TweenLite.to( e.target.__domTextTitle, .8, {
 			delay: .5,
 			css: {
 				x: "0%",
@@ -90,31 +90,31 @@ class Home extends Scene
 		})
 
 	_onOut: ( e ) =>
-		TweenMax.killTweensOf( e.target.__domTextBg )
-		TweenMax.killTweensOf( e.target.__domTextLine )
-		TweenMax.killTweensOf( e.target.__domTextTitle )
+		TweenLite.killTweensOf( e.target.__domTextBg )
+		TweenLite.killTweensOf( e.target.__domTextLine )
+		TweenLite.killTweensOf( e.target.__domTextTitle )
 
-		TweenMax.to( e.target.__domImg, .4, {
+		TweenLite.to( e.target.__domImg, .4, {
 			css: {
 				scale: 1
 			},
 			ease: Quad.easeInOut
 		} )
-		TweenMax.to( e.target.__domTextBg, .8, {
+		TweenLite.to( e.target.__domTextBg, .8, {
 			delay: .1,
 			css: {
 				x: "-100%"
 			},
 			ease: Quart.easeInOut
 		})
-		TweenMax.to( e.target.__domTextLine, .4, {
+		TweenLite.to( e.target.__domTextLine, .4, {
 			css: {
 				x: "25%",
 				scaleX: 0
 			},
 			ease: Cubic.easeIn
 		})
-		TweenMax.to( e.target.__domTextTitle, .6, {
+		TweenLite.to( e.target.__domTextTitle, .6, {
 			css: {
 				x: "-100%"
 			},
