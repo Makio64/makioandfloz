@@ -24,6 +24,7 @@ class Home extends Scene
 
 		return
 
+
 	_prepare: () ->
 		@_domsArticles = document.querySelectorAll( ".article-entry" )
 		@_domsImgsArticles = document.querySelectorAll( ".article-entry img" )
@@ -39,6 +40,8 @@ class Home extends Scene
 		@_countArticles = @_domsArticles.length
 
 		@_loadImgs()
+		return
+
 
 	_onOver: ( e ) =>
 		TweenLite.to( e.target.__domImg, .6, {
@@ -88,6 +91,8 @@ class Home extends Scene
 			},
 			ease: Cubic.easeOut
 		})
+		return
+
 
 	_onOut: ( e ) =>
 		TweenLite.killTweensOf( e.target.__domTextBg )
@@ -120,6 +125,8 @@ class Home extends Scene
 			},
 			ease: Cubic.easeIn
 		})
+		return
+
 
 	_loadImgs: () ->
 		for domImg in @_domsImgsArticles
@@ -131,11 +138,14 @@ class Home extends Scene
 			img.src = domImg.getAttribute( "data-src" )
 		return
 
+
 	_onImgLoaded: ( e ) =>
 		img = e.target
 		img.__isLoaded = true
 		img.__dom.src = img.src
 		@_resizeImg( img.__dom )
+		return
+
 
 	_resizeImgs: () ->
 		for domImg in @_domsImgsArticles
@@ -152,18 +162,21 @@ class Home extends Scene
 		domImg.style.height = data.h + "px"
 		domImg.width = data.w
 		domImg.height = data.h
+		return
+
 
 	transitionIn:()->
 		document.querySelector('header').className = ''
 		super()
 		return
-	#
+
+
 	onTransitionOutComplete:()->
 		# Animate
-		console.log('hmm')
 		document.querySelector('header').className = 'article'
 		super()
 		return
+
 
 	# Manage edge case
 	resize:()=>
@@ -171,9 +184,11 @@ class Home extends Scene
 		@_resizeImgs()
 		return
 
+
 	# Free ressources
 	dispose:()->
 		Stage.onResize.remove(@resize)
 		return
+
 
 module.exports = Home

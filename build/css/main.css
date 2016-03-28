@@ -260,11 +260,19 @@ header .mask {
   top: 0;
   left: 0;
   height: 100%;
+  z-index: 1;
   -webkit-transform-origin: left;
   -moz-transform-origin: left;
   -o-transform-origin: left;
   -ms-transform-origin: left;
   transform-origin: left;
+}
+header .section .mask {
+  -webkit-transform-origin: right;
+  -moz-transform-origin: right;
+  -o-transform-origin: right;
+  -ms-transform-origin: right;
+  transform-origin: right;
 }
 header a.title {
   position: relative;
@@ -458,7 +466,7 @@ header ul li a:hover:after {
   -ms-transform: scaleX(1);
   transform: scaleX(1);
 }
-header ul li.selected a {
+header ul li a.selected {
   opacity: 1;
   -ms-filter: none;
   filter: none;
@@ -519,9 +527,6 @@ header .backhome:before {
     padding: 0;
     height: 34px;
     min-height: 34px;
-  }
-  header.article * {
-    display: none;
   }
   header.article .backhome {
     display: block;

@@ -53,10 +53,10 @@ class Articles extends Scene
 
 		if(!doc) then return
 
-		if(document.readyState == 'complete')
-			@onReady()
-			Stage.onUpdate.remove(@onUpdate)
-			@animIn()
+		# if(document.readyState == 'complete')
+		@onReady()
+		Stage.onUpdate.remove(@onUpdate)
+		@animIn()
 		return
 
 	transitionIn:()->
@@ -77,6 +77,7 @@ class Articles extends Scene
 					@iframe.className = ''
 				,1)
 		@isReady = true
+		return
 
 
 	# Manage edge case

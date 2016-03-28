@@ -32,7 +32,11 @@ header
 		top 0
 		left 0
 		height 100%
+		z-index 1
 		transform-origin left
+
+	.section .mask
+		transform-origin right
 
 	a.title
 		position relative
@@ -162,8 +166,8 @@ header
 					&:after
 						transform scaleX(1)
 
-		li.selected a
-			opacity 1
+				&.selected
+					opacity 1
 
 	.backhome
 		display none
@@ -199,8 +203,8 @@ header
 			padding 0
 			height 34px
 			min-height 34px
-			*
-				display none
+			// *
+			// 	display none
 			.backhome
 				display block
 

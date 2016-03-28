@@ -73,7 +73,7 @@
 /******/ 			script.charset = 'utf-8';
 /******/ 			script.async = true;
 
-/******/ 			script.src = __webpack_require__.p + "" + chunkId + "." + {"1":"e95d56db939dac09fb11"}[chunkId] + ".bundle.js";
+/******/ 			script.src = __webpack_require__.p + "" + chunkId + "." + {"1":"37d7c92f2802647ae182"}[chunkId] + ".bundle.js";
 /******/ 			head.appendChild(script);
 /******/ 		}
 /******/ 	};
@@ -85,7 +85,7 @@
 /******/ 	__webpack_require__.c = installedModules;
 
 /******/ 	// __webpack_public_path__
-/******/ 	__webpack_require__.p = "./js/";
+/******/ 	__webpack_require__.p = "/js/";
 
 /******/ 	// Load entry module and return exports
 /******/ 	return __webpack_require__(0);
@@ -95,9 +95,13 @@
 /* 0 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var Preloader, Stage;
+	var LoadingScene, Preloader, SceneTraveler, Stage;
 
 	Stage = __webpack_require__(1);
+
+	SceneTraveler = __webpack_require__(3);
+
+	LoadingScene = __webpack_require__(4);
 
 	Preloader = (function() {
 	  function Preloader() {}
@@ -109,10 +113,11 @@
 	  };
 
 	  Preloader.init = function() {
+	    SceneTraveler.to(new LoadingScene());
 	    document.removeEventListener('DOMContentLoaded', Preloader.init);
 	    __webpack_require__.e/* nsure */(1, function(require) {
 	      var Main, main;
-	      Main = __webpack_require__(3);
+	      Main = __webpack_require__(6);
 	      return main = new Main(Preloader.onLoad);
 	    });
 	  };
@@ -652,6 +657,147 @@
 	    }
 
 	}(this));
+
+
+/***/ },
+/* 3 */
+/***/ function(module, exports) {
+
+	var SceneTraveler;
+
+	SceneTraveler = (function() {
+	  function SceneTraveler() {}
+
+	  SceneTraveler.currentScene = null;
+
+	  SceneTraveler.nextScene = null;
+
+	  SceneTraveler.isInit = false;
+
+	  SceneTraveler.isModule = true;
+
+	  SceneTraveler.init = function() {
+	    SceneTraveler.isInit = true;
+	  };
+
+	  SceneTraveler.to = function(scene) {
+	    SceneTraveler.nextScene = scene;
+	    if (SceneTraveler.currentScene) {
+	      SceneTraveler.currentScene.transitionOut();
+	    } else {
+	      SceneTraveler.onTransitionOutComplete();
+	    }
+	  };
+
+	  SceneTraveler.update = function(dt) {
+	    if (SceneTraveler.currentScene) {
+	      SceneTraveler.currentScene.update(dt);
+	    }
+	  };
+
+	  SceneTraveler.onTransitionOutComplete = function() {
+	    SceneTraveler.currentScene = SceneTraveler.nextScene;
+	    console.log('travel to :', SceneTraveler.currentScene.name);
+	    SceneTraveler.currentScene.transitionIn();
+	  };
+
+	  SceneTraveler.resize = function() {
+	    if (SceneTraveler.currentScene) {
+	      SceneTraveler.currentScene.resize();
+	    }
+	    if (SceneTraveler.nextScene) {
+	      SceneTraveler.nextScene.resize();
+	    }
+	  };
+
+	  return SceneTraveler;
+
+	})();
+
+	module.exports = SceneTraveler;
+
+
+/***/ },
+/* 4 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var LoadingScene, Scene,
+	  extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
+	  hasProp = {}.hasOwnProperty;
+
+	Scene = __webpack_require__(5);
+
+	LoadingScene = (function(superClass) {
+	  extend(LoadingScene, superClass);
+
+	  function LoadingScene() {
+	    LoadingScene.__super__.constructor.call(this, "Loading");
+	    return;
+	  }
+
+	  return LoadingScene;
+
+	})(Scene);
+
+	module.exports = LoadingScene;
+
+
+/***/ },
+/* 5 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var Scene, SceneTraveler,
+	  bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
+
+	SceneTraveler = __webpack_require__(3);
+
+	Scene = (function() {
+	  function Scene(name) {
+	    this.name = name;
+	    this.onTransitionOutComplete = bind(this.onTransitionOutComplete, this);
+	    this.onTransitionInComplete = bind(this.onTransitionInComplete, this);
+	    this.transitionOut = bind(this.transitionOut, this);
+	    this.transitionIn = bind(this.transitionIn, this);
+	    this.states = [];
+	    this.startTime = 0;
+	    this.lastTimeCheck = -1;
+	    return;
+	  }
+
+	  Scene.prototype.update = function(dt) {};
+
+	  Scene.prototype.transitionIn = function() {
+	    this.onTransitionInComplete();
+	  };
+
+	  Scene.prototype.transitionOut = function() {
+	    document.querySelector('#mask').className = 'transitionIn';
+	    setTimeout((function(_this) {
+	      return function() {
+	        setTimeout(function() {
+	          return document.querySelector('#mask').className = 'transitionOut';
+	        }, 64);
+	        return _this.onTransitionOutComplete();
+	      };
+	    })(this), 510);
+	  };
+
+	  Scene.prototype.onTransitionInComplete = function() {};
+
+	  Scene.prototype.onTransitionOutComplete = function() {
+	    this.dispose();
+	    SceneTraveler.onTransitionOutComplete();
+	  };
+
+	  Scene.prototype.resize = function() {};
+
+	  Scene.prototype.dispose = function() {};
+
+	  return Scene;
+
+	})();
+
+	module.exports = Scene;
 
 
 /***/ }

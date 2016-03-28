@@ -1,5 +1,6 @@
 Stage = require "makio/core/Stage"
-# BorderLoader = require "ui/BorderLoader"
+SceneTraveler = require "makio/scenes/SceneTraveler"
+LoadingScene = require "pages/LoadingScene"
 
 #---------------------------------------------------------- Class Loader
 
@@ -12,6 +13,7 @@ class Preloader
 		# @loaderBorder.setPercent(@loaderBorder.percent + (@percent-@loaderBorder.percent)*0.15)
 
 	@init = ()=>
+		SceneTraveler.to(new LoadingScene())
 		document.removeEventListener('DOMContentLoaded', Preloader.init)
 		require.ensure(['Main'], (require)=>
 			Main = require('Main')
