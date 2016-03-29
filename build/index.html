@@ -5,20 +5,19 @@
     <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, width=device-width, minimal-ui">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <meta property="og:site_name" content="makioandfloz">
-    <meta property="og:title" content="makio &amp; floz">
-    <meta property="og:description" content="Blog about art &amp; dev">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="http://www.makioandfloz.com">
-    <meta property="og:image" content="http://www.makioandfloz.com/facebook.jpg">
     <meta property="fb:app_id" content="534075170104569">
+    <meta property="og:site_name" content="makioandfloz">
+    <meta property="og:type" content="website">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:site" content="@makio64">
-    <meta name="twitter:creator" content="@makio64">
-    <meta name="twitter:title" content="makioandfloz">
-    <meta name="twitter:description" content="Blog about art &amp; dev">
-    <meta name="twitter:image" content="http://www.makioandfloz.com/twitter.jpg">
-    <title>Makio and Floz - Blog about art & dev</title>
+    <meta name="twitter:site" content="@makio64"><?php
+    $url = basename($_SERVER["REQUEST_URI"]);
+    if($url == ""){
+     require "./ogs/home.php";
+    } else {
+     $id = substr($url, strrpos($url, "/"));
+     require "./ogs/".$id.".php";
+    }
+    ?>
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Lato:300,400,700">
     <link rel="stylesheet" href="/css/main.css">
   </head>
@@ -45,8 +44,8 @@
           <div class="mask"></div>
           <h3>Case Studies</h3>
           <ul>
-            <li><a href="/blog/treeline" data-id="treeline">Treelines</a></li>
-            <li><a href="/blog/deer-xmas" data-id="deer-xmas">Dear Xmas</a></li>
+            <li><a href="/article/treeline" data-id="treeline">Treelines</a></li>
+            <li><a href="/article/deer-xmas" data-id="deer-xmas">Deer Xmas</a></li>
           </ul>
         </div>
       </div>
