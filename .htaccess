@@ -1,6 +1,6 @@
-DirectoryIndex /index.html
+DirectoryIndex /index.php
 
-FallbackResource /index.html
+FallbackResource /index.php
 
 RewriteEngine On
 RewriteCond %{HTTP_HOST} ^makioandfloz.com [NC]

@@ -56,8 +56,8 @@
     "dist:html": "replaceinfiles -r dist/manifest.json -s build/index.html -d 'build/{base}'",
     "js:dev": "webpack --progress --colors -w",
     "js:dist": "webpack --progress --colors --optimize-minimize --optimize-occurence-order --optimize-dedupe",
-    "jade:dev": "jade src/jade/index.jade -P -w -o build",
-    "jade:dist": "jade src/jade/index.jade -P -o build",
+    "jade:dev": "jade src/jade/index.jade -P -w -o build -E php",
+    "jade:dist": "jade src/jade/index.jade -P -o build -E php",
     "css:dev": "stylus -w src/stylus/main.styl -o build/css -u nib --sourcemap",
     "css:dist": "stylus -u nib src/stylus/main.styl -o build/css"
   }
