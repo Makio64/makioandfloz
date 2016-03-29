@@ -54,11 +54,11 @@
       </div>
       <h2 class="dx-title">ORIGINS OF THE IDEA</h2>
       <div class="dx-text">
-        When I was working at <a target="_blank" href="http://www.firstborn.com">Firstborn, in NYC</a>, I started to do some R&D around lines & model. The idea was to draw lines around a 3D model, to animate them, and… Well, that’s the fun part of R&D: and let’s see what we will do with it :)
-        But I never really had the time to push it forward. Until this december with a new year of Christmas Experiments!
+        When I was working at <a target="_blank" href="http://www.firstborn.com">Firstborn, in NYC</a>, I started to do some R&D to find some way to draw lines around a 3D model, to animate them, and… Well, that’s the fun part of R&D: and let’s see what we will do with it :)
+        But I never really had the time to push it forward... Until december 2015 with a new year of Christmas Experiments!
         <br /><br />
-        I’m a big fan of painting, digital painting, and digital world. And I love to create something that mix all of those world together. Like we did last year, with filsdegraphiste, on <a target="_blank" href="http://www.floz.fr/NorthPoleChristmas-Experiment-2014">Northpole</a>.
-        So at this point, it was kinda obvious that I was going to play with some brushes and put them on the lines!
+        I’m a big fan of painting and digital stuff, and I love to create something that mix those stuff together. (You can see my previous Christmas Experiment, in collaboration with <a href="http://filsdegraphiste.fr">filsdegraphiste</a> that brings painting in digital world: <a target="_blank" href="http://www.floz.fr/NorthPoleChristmas-Experiment-2014">Northpole</a>)<br />
+        So when I was thinking about what I could do with 3D lines, it was kinda obvious I was going to play with 3D brushes.
         <br /><br />
         Only issue: I can’t create a 3D model on my own, and I don’t have the knowledge to modify a 3D model. So I used the same deer that Makio used on <a target="_blank" href="http://christmasexperiments.com/xps/06/journey/">Journey</a>, coming from <a target="_blank" href="http://www.ro.me/">RO.ME</a>.
         <br /><br />
@@ -79,12 +79,12 @@
         <div class="dx-img">
           <img data-width="1922" data-height="1042" data-src="img/lines_auto.jpg" src="" alt="First research of lines wrapping around a model" />
         </div>
-        I created a second one, that allow the me to click on my model, and to add points manually, to have some path more “natural” and “artistic”, less “robotic”.<br />
+        I created a second one, that allows me to click on my model, and to add points manually. The idea behind this tool was to have some path more “natural”, “artistic” or made by hand. Less “robotic”, in a way.<br />
         <div class="dx-img">
           <img data-width="1764" data-height="1060" data-src="img/lines_manual.jpg" src="" alt="First research of lines wrapping around a model" />
         </div>
-        However, the path that I'm drawing is not really smooth...<br />
-        THREEJS comes with some handy tools to solve that issue. I used <code class="fz javascript">THREE.CatmullRomCurve3</code> which will allow me to add some points between all the vertices I created, and to make sure the line will be curved.
+        At this point, I realized the paths generated from those 2 tools were not really smooth... And I wanted to add more details on them.<br />
+        THREEJS comes with some handy tools to solve that issue. I used <code class="fz javascript">THREE.CatmullRomCurve3</code> which allows me to add some points between all the vertices I created, and to make sure the line will be curved.
         <pre>
           <code class="hljs javascript">
             const spline = new THREE.CatmullRomCurve3( this._geo )
@@ -102,9 +102,9 @@
       </div>
       <h2 class="dx-title">Z-order</h2>
       <div class="dx-text">
-        As I’m playing with brushes, it means transparency… And z-order is getting kinda fucked in ThreeJS.<br />
+        As I want to simulate real brushes, I have to create some strokes, with transparency. And when you play with transparency in ThreeJS, problems are coming to you. Here, my z-order got kinda fucked in ThreeJS when you play with transparency.<br />
         Because of the solution I used, I can sum the position of the differents vertices, cache this value, and use it to find the distance with the current camera position.<br />
-        In the end, it’s not perfect, but it works quite well for why I wanted!<br />
+        In the end, it’s definetly not perfect. But it works quite well for what I wanted!<br />
         Cheap and easy solution.<br />
         <pre>
           <code class="hljs javascript">
@@ -158,8 +158,10 @@
       </div>
       <h2 class="dx-title">Line animation & MeshLines</h2>
       <div class="dx-text">
-        At first, I decided to make the vertices move then setting the Geometry of the <a target="blank" href="https://github.com/spite/THREE.MeshLine">MeshLines</a> from <a target="_blank" href="https://twitter.com/thespite">TheSpite</a>. Of course, it was definetly not the best approach…<br />
-        So after talking with Makio, I decided to switch: as my vertices don’t need to move, I can create the geometry once for all, and make the texture move instead.<br />
+        There are multiple ways to animate the line.<br />
+        My first approach was to make the vertices move. So, each frame, I was changing there position. When you use <a target="blank" href="https://github.com/spite/THREE.MeshLine">MeshLines</a> (from <a target="_blank" href="https://twitter.com/thespite">TheSpite</a>), changing the position of the vertices means setting again the geometry. It involves a lot of calculation, and the performances suffer.<br />
+        So this first try was not a success... Haha.<br />
+        So after talking with Makio, I decided to switch: as my vertices don’t need to move (My line will always be the same, as it comes from my tools), I can create the geometry once for all, and make <strong>the texture move (and so... texture's UV)</strong> instead.<br />
         <pre>
           <code class="hljs javascript">
             vUV = uv;
@@ -167,30 +169,32 @@
             vUV.x = smoothstep( 0., 1., vUV.x );
           </code>
         </pre>
-        The result was here, and the performances too! Quite happy with this change.
+        The result was here: nice animation and good performances too! Quite happy with this change.
 
       </div>
       <h2 class="dx-title">Mobile, iPad</h2>
       <div class="dx-text">
         Because everything runs via shaders, the experiment run quite fast on mobile, and very fast on tablet!<br />
-        Only issue here: I decided at one point to use <code class="fz javascript">mediump float</code> instead of <code class="fz javascript">highp float</code>… Bad idea. You definetly need <code class="fz">highp float</code> for mobile & tablet!<br />
+        Only issue here: I decided at one point to use <code class="fz javascript">mediump float</code> instead of <code class="fz javascript">highp float</code>… Bad idea. Desktop was running fine without highhp float... But you definetly need <code class="fz">highp float</code> for mobile & tablet!<br />
         Keep it in mind, it’s just one line of code to change, and your project will run normaly, without artefacts, and fast.
-
       </div>
       <h2 class="dx-title">Final touch</h2>
       <div class="dx-text">
         I wanted to add some final elements that were going to make the whole experiment more enjoyable.<br />
         I choose to do 2 things:<br />
-        To map some line on a sphere, for the background brushes.
+        - To work on the background. I went back to my tools, and tried to map some line on a big sphere.<br />
+        I then exported them to my project, and got some nice animated brushes behind the deer.
         <div class="dx-img">
           <img data-width="2006" data-height="1107" data-src="img/sphere.png" src="" alt="First research of lines wrapping around a model" />
         </div>
-        And adding some particles (3 differents kind of particles).
+        - To work on the general atmosphere, by adding some particles (3 differents kind of particles).
         <div class="dx-img">
           <img data-width="1566" data-height="994" data-src="img/particles.png" src="" alt="First research of lines wrapping around a model" />
         </div>
         <br /><br />
-
+      </div>
+      <div class="dx-text">
+        I think it's time to say goodbye...! If you have any feedbacks about this article, the way it's written, the informations shared, or anything... Feel free to share them with me :)
       </div>
       <h3 class="dx-subtible">Thanks!</h3>
 
