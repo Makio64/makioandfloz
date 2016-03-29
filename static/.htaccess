@@ -1,0 +1,11 @@
+# One month for most static assets
+<filesMatch ".(css|jpg|jpeg|png|gif|js|ico)$">
+Header set Cache-Control "max-age=2628000, public"
+</filesMatch>
+
+DirectoryIndex /index.php
+FallbackResource /index.php
+
+RewriteEngine On
+RewriteCond %{HTTP_HOST} ^makioandfloz.com [NC]
+RewriteRule ^(.*)$ http://www.makioandfloz.com/$1 [L,R=301]
