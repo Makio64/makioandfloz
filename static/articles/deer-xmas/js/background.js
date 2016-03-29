@@ -1163,7 +1163,6 @@ THREE.MeshLineMaterial = function ( parameters ) {
 '',
 'varying vec2 vUV;',
 'varying vec4 vColor;',
-'varying float vScale;',
 // 'varying vec3 vPosition;',
 
 '#ifndef HALF_PI',
@@ -1210,7 +1209,7 @@ THREE.MeshLineMaterial = function ( parameters ) {
  // '    float dist = distance( nextP, currentP );',
 '',
 
-'  vScale = sineOut( uv.x ) / .1;',
+'  float vScale = sineOut( uv.x ) / .1;',
 '  if( uv.x > .5 ) {',
 '    vScale = sineOut( ( 1. - uv.x ) ) / .2;',
 '  }',
@@ -1259,7 +1258,6 @@ THREE.MeshLineMaterial = function ( parameters ) {
 '',
 'varying vec2 vUV;',
 'varying vec4 vColor;',
-'varying float vScale;',
 // 'varying vec3 vPosition;',
 '',
 'void main() {',
