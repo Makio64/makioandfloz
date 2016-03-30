@@ -26,15 +26,16 @@
       <div class="show"></div>
       <div class="slide">
         <h2>Inspiration</h2>
-        <p>I recently start living in Japan and illumination for winter are beautiful here. Everywhere you go, you can only be enchanted by the lights and after I finished my first christmasxp <a href='http://christmasexperiments.com/xps/06/journey/' target='_blank'>"Journey"</a> I wanted to make my own digital version of illuminated tree.</p>
+        <p>I recently started living in Japan and, during winter, illuminations are beautiful here.Everywhere you go, you can only be enchanted by the lights.<br />
+          After I finished my first christmasxp <a href='http://christmasexperiments.com/xps/06/journey/' target='_blank'>"Journey"</a>, I wanted to make my own digital version of an illuminated tree.</p>
       </div>
       <div class="slide">
-        <h2>Work organisation </h2>
-        <p>After sketching my idea on paper I cut the work in fews points :</p>
+        <h2>Work organization </h2>
+        <p>After sketching my idea on paper I splitted the work in fews steps :</p>
         <ul>
           <li>I. Create the particle ground</li>
-          <li>II. Create simple shape with line</li>
-          <li>III. Add particles on the line</li>
+          <li>II. Create simple shape with lines</li>
+          <li>III. Add particles on the lines</li>
           <li>IV. Improving the shape</li>
           <li>V. Making it move</li>
           <li>VI. Add interaction & Optimize for mobile	</li>
@@ -44,12 +45,12 @@
       </div>
       <div class="slide">
         <h2>Technical note</h2>
-        <p>This experience is write in coffeescript, used Threejs (v74), MeshLine & custom shaders (glsl). I assume in my explanation you are use to shader, if you're not, I recommend you <a href="https://aerotwist.com/tutorials/an-introduction-to-shaders-part-1/" target="_blank" title="introduction to shader">this introduction to shader</a> by <a href="https://twitter.com/aerotwist" target="_blank">Aerotwist</a>.</p>
+        <p>This experience is written in coffeescript, is using Threejs (v74), MeshLine & custom shaders (glsl). I assume here that you are used to shaders, if you're not, I recommend you <a href="https://aerotwist.com/tutorials/an-introduction-to-shaders-part-1/" target="_blank" title="introduction to shader">this introduction to the subject</a> by <a href="https://twitter.com/aerotwist" target="_blank">Aerotwist</a>.</p>
       </div>
       <div class="slide ground">
         <h2>The ground</h2>
-        <p>To keep the feery of christmas illumination the ground is done in particle. For performance issues, the movement & curvy shape is manage in the vertex shader and use 2 attributes (custom parameters for each particle): aAngle & aTime, and fews uniforms(parameters for all the material): time, speed, dist & height.</p>
-        <p>Below the code show you how the particles are place. It use the <a href="https://github.com/Makio64/starter/blob/master/src/coffee/makio/math/M.coffee#L32" target="_blank">orbit position</a> formula BUT the position Y is managed differently. Using this formula have the advantage of creating more density of particles on the middle & border of a circle than normal 2d geometry with cos/sin formula.</p>
+        <p>To keep the fairy of christmas illuminations, the ground is done with particles. For performance issues, the movement & curvy shape is managed in the vertex shader and use 2 attributes (custom parameters for each particle): aAngle & aTime, and fews uniforms(parameters for all the material): time, speed, dist & height.</p>
+        <p>Below the code show you how the particles are placed. It uses the <a href="https://github.com/Makio64/starter/blob/master/src/coffee/makio/math/M.coffee#L32" target="_blank">orbit position</a> formula BUT the position Y is managed differently. This way has the advantage of creating better density of particles on the middle & border of a circle than normal 2d geometry with cos/sin formula.</p>
         <pre><code class="glsl">float theta = aAngle.y + aTime;
 float phi = aAngle.x + sin(speed*(time+aTime))*.5;
 pos.x = aAngle.z * sin( phi ) * cos( theta ) * radius;
@@ -62,9 +63,9 @@ pos.y = smoothstep(0., dist, distance(pos,vec3(0.))) * height;</code></pre>
       <div class="show"></div>
       <div class="slide line">
         <h2>Create the tree shape</h2>
-        <p>The tree is made of line. A line can be see as a succession of points connected togethers. There is many ways to create interesting shape, I was thinking about using 3d bezier line but I tested a 'simple' approach with angles. </p>
-        <p>The idea is to have a 3d directional vector ( again give by two angle phi & theta ) and add a small value to the previous vector, move in this direction & repeat it. To create diversity, each line start with different angles and the distance between 2 points vary from a line to another. After tweeking the values I get a tree shape very close from my sketch :)</p>
-        <p>To make beautiful line with threejs I used <a href='https://github.com/spite/THREE.MeshLine' target='_blank'>MeshLine</a> from <a href='https://twitter.com/thespite' target='_blank'>@thespite</a> and I'm very satisphied of it even if animation part was tricky as we will see after.</p>
+        <p>The tree is made of line. A line can be seen as a succession of points connected together. There is many ways to create interesting shape. I was thinking about using 3d bezier line, but I tested a 'simple' approach with angles. </p>
+        <p>The idea is to have a 3d directional vector (again, given by two angle phi & theta) and add a small value to the previous vector, move in this direction & repeat it. To create diversity, each line starts with different angle and the distance between 2 points vary from a line to another. After tweeking the values, I got a tree shape very close from my sketch :)</p>
+        <p>To make beautiful line with threejs I used <a href='https://github.com/spite/THREE.MeshLine' target='_blank'>MeshLine</a> from <a href='https://twitter.com/thespite' target='_blank'>@thespite</a> and I'm very satisfied of it, even if the animation part was tricky as we will see after.</p>
         <p>Try yourself to play with parameters ;)</p>
         <div id="epsilonPhi" class="slider">epsilon phi</div>
         <div id="epsilonTheta" class="slider">epsilon theta</div>
@@ -80,7 +81,7 @@ pos.y = smoothstep(0., dist, distance(pos,vec3(0.))) * height;</code></pre>
 		positions[ j ] = x
 		positions[ j + 1 ] = y
 		positions[ j + 2 ] = z
-		
+
 		x += radius * Math.sin( phi ) * Math.cos( theta )
 		y += radius * Math.cos( phi )
 		z += radius * Math.sin( phi ) * Math.sin( theta )
@@ -93,8 +94,8 @@ pos.y = smoothstep(0., dist, distance(pos,vec3(0.))) * height;</code></pre>
       <div class="show"></div>
       <div class="slide">
         <h2>Animate the lines</h2>
-        <p>Then I wanted to animate the line, but I got performance issues. I realized it came from the process function of MeshLine witch update all the attributes & recreate the buffer, even optimized/modified to reuse the same buffer & update only prev/next/position attributes it was still too heavy on mobile. So instead of changing the attribute I modified the MeshLineMaterial Shader. </p>
-        <p>I add it a uniform time & used the width variable as a time offset and not directly as a width. </p>
+        <p>Then I wanted to animate the lines, but I got performances issues. I realized it came from the process function of MeshLine which update all the attributes & recreate the buffer. Even when I tried to modify it to reuse the same buffer & update only prev/next/position attributes it was still too heavy on mobile. So, instead of changing the attribute I modified the MeshLineMaterial Shader.</p>
+        <p>I added a uniform time & used the width variable as a time offset and not directly as a width. </p>
         <p>To reduce the width at the start & end of the line I used smoothstep & uv.</p>
         <p>The width is given by this formula:</p>
         <pre><code class="javascript">line.setGeometry( geometry,function(p){ return p*division })</code></pre>
@@ -103,16 +104,16 @@ float w = 1.8 * pixelWidth * lineWidth * sin(width+time)*(1.-smoothstep(.9,1.,uv
 w *= smoothstep(uv.x*2.,uv.y*2.+2.,-time*2000.);</code></pre>
         <div id="deltaSpeed" class="slider">deltaSpeed</div>
         <div id="division" class="slider">division</div>
-        <p>So as you can see by changing the division parameter, each lines is actually not only one line, but many and line not "move", but the sin(width+time) in the shader made it look like its moving. It solve my performance problem for it.</p>
+        <p>So as you can see by changing the division parameter, each line is actually not only one line, but many. Also, a line doesn't "move", but the sin(width+time) in the shader create a simulation of it moving. It solved my performance problem for it.</p>
       </div>
       <div class="show"></div>
       <div class="slide">
         <h2>Making the particles on the tree</h2>
-        <p>My next step was to add particles on the three, I push particles on it by getting a random position on the line using linear interpolation & adding positionOffset to particles.</p>
+        <p>My next step was to add particles on the three, I pushed particles on it by getting a random position on the line using linear interpolation & adding positionOffset to particles.</p>
         <div id="particleOnly" class="toogleButton">Show particle only</div>
-        <p>Well.. Again make it move was the tricky/funky part :D</p>
-        <p>I couldn’t set their position anymore with javascript for performance issue, so I did it in the vertex shader by passing the line path ( the array of points composing the line ) as a uniform and a aTime as attribute on each particle. The problem I encountered is the limit of the number of uniforms in a vertex shader ( apparently 512 ). To avoid it I simplify the line path by using less points.</p>
-        <p>The exact number of point use by each material shader is set in javascript and add dynamically as uniforms at the start of the shader. Its now between 100 to 200points in case some devices have a limit under 256.</p>
+        <p>Well.. Again making it move was the tricky/funky part :D</p>
+        <p>I couldn’t set their position anymore with javascript for performance issue, so I did it in the vertex shader by passing the line path (the array of points composing the line) as a uniform and a aTime as attribute on each particle. The problem I encountered is the limit of the number of uniforms in a vertex shader (apparently 512). To avoid it I simplified the line path by using less points.</p>
+        <p>The exact number of points used by each material shader is set in javascript and added dynamically as uniforms at the start of the shader. It's now between 100 to 200points in case some devices have a limit under 256.</p>
         <pre><code class="glsl">float t = (time+aTime*50.)/80.;
 float i = mod(t, pathLength)+1.;
 float percent = i/pathLength;
@@ -127,12 +128,12 @@ pos = (1.-extra)*path[ii-1] + extra*path[ii];
 //- reduce the offset position on the end so it converge to the same point
 pos += aOffset*(1.4-smoothstep(0.9, 1., percent));
 </code></pre>
-        <p>Made the particle disappear smoothly at the end</p>
+        <p>Making the particle disappearing smoothly at the end</p>
         <pre><code class="glsl">alpha *= 1.-smoothstep(0.98, 1., percent);</code></pre>
       </div>
       <div class="slide">
         <h2>Appear/Disapear/Optimization</h2>
-        <p>To made it appear / disappear like its coming from the ground, I play with the alpha and add a “hide” variable in shader to control it. Also I inverse & accelerate the delta time when it should hide so it feel the line are coming back. Finally I make the branch coming one by one every 50ms so its softer than all appear together and also more interesting.</p>
+        <p>To make it appear/disappear like if it's coming from the ground, I play with the alpha and add a “hide” variable in the shader to control it. Also I inverse & accelerate the delta time when it should hide so it feels like the lines are coming back. Finally I make the branches coming one by one every 50ms. Like this I think it's smoother and more interesting, compared than making them all appear together.</p>
         <div id="makeNew" class="toogleButton">Anim in/out		</div>
         <p>Optimization : In addition to the previous optimization I removed all depth test, used <a href='https://github.com/Makio64/treeline_casestudy/blob/master/src/coffee/makio/core/ObjectPool.coffee' target='_blank'>objects pool</a> & reduced the number of particles/line/points on mobile.</p>
       </div>
@@ -140,8 +141,8 @@ pos += aOffset*(1.4-smoothstep(0.9, 1., percent));
       <div class="slide conclusion">
         <h2>Conclusion</h2>
         <p><img src="img/09.jpg"><img src="img/10.jpg"><img src="img/11.jpg"><img src="img/13.jpg"></p>
-        <p>I'm happy with the visual result of this experiment & I have fun experimenting around Meshline learning a lot in short time. The hardest point was to tweek Meshline to create animation on mobile but the change was worth it :)</p>
-        <p>Some link if you wish to learn more about MeshLine & Shaders:
+        <p>I'm happy with the visual result of this experiment & I had fun experimenting around Meshline, learning a lot in a short amount of time. The hardest point was to tweak Meshline to create animation on mobile. But... it was worth it :)</p>
+        <p>Some links if you want to learn more about MeshLine & Shaders:
           <ul>
             <li>-<a href='/deer-xmas'>Another case study</a> of advanced experiments using MeshLine by <a href='http://github.com/florianzumbrunn/' target='_blank'>@Floz</a></li>
             <li>-<a href='https://github.com/Makio64/treeline_casestudy' target='_blank'>The source code of this case study</a> ( coffeescript )</li>
@@ -152,7 +153,7 @@ pos += aOffset*(1.4-smoothstep(0.9, 1., percent));
       </div>
       <div class="show"></div>
       <div class="slide">
-        <p>And... Done! :) Every feedbacks will be appreciate about this article, as well if you have any questions, feel free to contact me via <a href="https://twitter.com/makio64" target="_blank">my twitter</a> :)</p>
+        <p>And... Done! :) Every feedbacks  about this article will be appreciated. As well, if you have any questions, feel free to contact me via <a href="https://twitter.com/makio64" target="_blank">my twitter</a> :)</p>
         <h2 class="fin">THANKS!</h2>
         <p>Share this article if you liked it! :)</p>
         <div class="shares">
