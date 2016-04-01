@@ -29,7 +29,7 @@ class StageRenderer
 			@onResize.dispatch()
 			return
 
-		@lastTime = performance.now()
+		@lastTime = Date.now()
 
 		requestAnimationFrame( @update )
 		document.addEventListener('touchstart', this.goFullScreen, true)
@@ -43,7 +43,7 @@ class StageRenderer
 			requestFullScreen.call(docEl)
 
 	@update:()=>
-		t = performance.now()
+		t = Date.now()
 		dt = t - @lastTime
 		@lastTime = t
 

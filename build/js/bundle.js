@@ -169,7 +169,7 @@
 	        _this.onResize.dispatch();
 	      };
 	    })(this);
-	    this.lastTime = performance.now();
+	    this.lastTime = Date.now();
 	    requestAnimationFrame(this.update);
 	    document.addEventListener('touchstart', this.goFullScreen, true);
 	  };
@@ -186,7 +186,7 @@
 
 	  StageRenderer.update = function() {
 	    var dt, t;
-	    t = performance.now();
+	    t = Date.now();
 	    dt = t - StageRenderer.lastTime;
 	    StageRenderer.lastTime = t;
 	    if (StageRenderer.pause) {
