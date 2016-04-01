@@ -5,11 +5,12 @@ HtmlUtils 	= require('makio/utils/HtmlUtils')
 class Articles extends Scene
 
 	# Allow ressource
-	constructor:(id)->
+	constructor:(id,isOpen=true)->
 		super('Article - '+id)
 		Stage.onResize.add(@resize)
 		@isReady = false
-		@open(id)
+		if(isOpen)
+			@open(id)
 		return
 
 	open:(id)->

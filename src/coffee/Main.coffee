@@ -2,6 +2,7 @@ SceneTraveler 	= require('makio/scenes/SceneTraveler')
 Stage 			= require('makio/core/Stage')
 
 Home 			= require('pages/Home')
+HomeBouboup 			= require('pages/HomeBouboup')
 Articles 		= require('pages/Articles')
 Error404 		= require('pages/Error404')
 
@@ -44,16 +45,16 @@ class Main
 	playIntro:()=>
 		tl = new TimelineLite()
 		tl.to('header',0,{opacity:1,autoAlpha:1})
-		tl.from('header',.6,{delay:.3,ease:Expo.easeOut,y:"-100%",clearProps:"transform"})
-		tl.fromTo('h1', 0.4, {ease:Quad.easeOut,x:"-100%"}, {x:"0%",clearProps:"transform"},'-=.15')
-		tl.to('h1 .mask', 0.5, {ease:Quint.easeIn,scaleX:"0"},'-=.3')
-		tl.fromTo('h2', 0.4, {ease:Quad.easeOut,x:"-100%"}, {x:"0%",clearProps:"transform"}, "-=.7")
-		tl.to('h2 .mask', 0.4, {ease:Quad.easeIn,scaleX:"0"},'-=.3')
-		tl.fromTo('.presentation', 0.4, {ease:Quad.easeOut,x:"-100%"}, {x:"0%",clearProps:"transform"}, "-=.7")
-		tl.to('.presentation .mask', 0.4, {ease:Quad.easeIn,scaleX:"0"},'-=.3')
-		tl.fromTo('.links', 0.4, {ease:Quad.easeOut,x:"-100%"}, {x:"0%",clearProps:"transform"}, "-=.7")
-		tl.to('.links .mask', 0.4, {ease:Quad.easeIn,scaleX:"0"},'-=.3')
-		tl.fromTo('.section', 0.4, {ease:Quad.easeOut,x:"-100%"}, {x:"0%"}, "-=.7")
+		tl.from('header',.6,{delay:.3,ease:Expo.easeOut,y:"-100%"})
+		tl.fromTo('h1', 0.4, {ease:Quad.easeOut,x:"-100%"}, {x:"0%"},'-=.15')
+		tl.to('h1 .mask', 0.4, {ease:Quint.easeIn,scaleX:"0"},'-=.3')
+		tl.fromTo('h2', 0.4, {ease:Quad.easeOut,x:"-100%"}, {x:"0%"}, "-=.4")
+		tl.to('h2 .mask', 0.3, {ease:Quint.easeIn,scaleX:"0"},'-=.3')
+		tl.fromTo('.presentation', 0.4, {ease:Quad.easeOut,x:"-100%"}, {x:"0%"}, "-=.4")
+		tl.to('.presentation .mask', 0.3, {ease:Quint.easeIn,scaleX:"0"},'-=.3')
+		tl.fromTo('.links', 0.4, {ease:Quad.easeOut,x:"-100%"}, {x:"0%"}, "-=.4")
+		tl.to('.links .mask', 0.3, {ease:Quint.easeIn,scaleX:"0"},'-=.3')
+		tl.fromTo('.section', 0.4, {ease:Quad.easeOut,x:"-100%"}, {x:"0%"}, "-=.3")
 		tl.to('.section .mask', 0.4, {ease:Quint.easeIn,scaleX:"0"},'-=.5')
 		return
 
@@ -92,7 +93,7 @@ class Main
 		for link in @links
 			link.className = ''
 
-		SceneTraveler.to(new Home())
+		SceneTraveler.to(new HomeBouboup())
 		ga('set', 'page', '/home');
 		return
 

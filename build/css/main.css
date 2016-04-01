@@ -261,11 +261,11 @@ header .mask {
   left: 0;
   height: 100%;
   z-index: 1;
-  -webkit-transform-origin: left;
-  -moz-transform-origin: left;
-  -o-transform-origin: left;
-  -ms-transform-origin: left;
-  transform-origin: left;
+  -webkit-transform-origin: right;
+  -moz-transform-origin: right;
+  -o-transform-origin: right;
+  -ms-transform-origin: right;
+  transform-origin: right;
 }
 header .section .mask {
   -webkit-transform-origin: right;
