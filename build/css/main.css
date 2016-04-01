@@ -284,16 +284,18 @@ header a.title h1 {
   color: #fff;
   text-align: left;
   padding: 20px 0 10px 0;
-  font-family: 'Lato';
+  font-family: 'Rajdhani';
   font-size: 48px;
-  font-weight: 700;
+  font-weight: 500;
   position: relative;
+  letter-spacing: 1px;
 }
-header a.title h1 span {
+header a.title h1 .light {
   opacity: 0.5;
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
   filter: alpha(opacity=50);
   font-weight: 300;
+  margin-right: 8px;
 }
 header a.title h2 {
   position: relative;
