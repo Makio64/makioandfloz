@@ -199,9 +199,13 @@ header
 
 @media (max-width: 700px)
 	header
+		position fixed
 		width 100%
+		height 70px
+		min-height auto
 		margin-bottom 0
-		position relative
+		overflow hidden
+		padding 10px 20px 0 20px
 		&.article
 			border-bottom 1px solid #111
 			padding 0
@@ -221,7 +225,6 @@ header
 		// top 34px
 @media (max-width: 480px)
 	header
-		padding 20px
 		a.title
 			br
 				display none
