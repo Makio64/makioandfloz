@@ -94,7 +94,6 @@ class Main
 			link.className = ''
 
 		# TweenLite.to('header',.5,{height:'100%',minHeight:'100%'})
-		@menu.className = ''
 		SceneTraveler.to(new HomeBouboup())
 		ga('set', 'page', '/home');
 		return

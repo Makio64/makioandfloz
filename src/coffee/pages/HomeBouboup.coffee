@@ -12,5 +12,10 @@ class HomeBouboup extends Article
 		@resize()
 		return
 
+	transitionIn:()->
+		super()
+		document.querySelector('header').className = ''
+		return
+
 
 module.exports = HomeBouboup

@@ -61,6 +61,7 @@ class Articles extends Scene
 		return
 
 	transitionIn:()->
+		document.querySelector('header').className = 'article'
 		@animIn()
 		super()
 		return

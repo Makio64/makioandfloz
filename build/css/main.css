@@ -528,6 +528,7 @@ header .backhome:before {
 }
 @media (max-width: 700px) {
   header {
+    position: fixed;
     width: 100%;
     background: rgba(0,0,0,0.9);
   }
@@ -550,9 +551,6 @@ header .backhome:before {
   }
 }
 @media (max-width: 480px) {
-  header {
-    padding: 20px;
-  }
   header a.title br {
     display: none;
   }
