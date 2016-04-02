@@ -93,11 +93,15 @@ class Main
 		for link in @links
 			link.className = ''
 
+		# TweenLite.to('header',.5,{height:'100%',minHeight:'100%'})
+		@menu.className = ''
 		SceneTraveler.to(new HomeBouboup())
 		ga('set', 'page', '/home');
 		return
 
 	onArticles:(e)=>
+		# TweenLite.to('header',.5,{height:'34px',minHeight:'34px'})
+		@menu.className = 'article'
 
 		for link in @links
 			if link.dataset.id == e.params.id

@@ -200,25 +200,24 @@ header
 @media (max-width: 700px)
 	header
 		width 100%
-		margin-bottom 0
-		position relative
+		background rgba(0,0,0,0.9)
 		&.article
+			height 34px
+			min-height: 34px
 			border-bottom 1px solid #111
 			padding 0
-			height 34px
 			min-height 34px
-			// *
-			// 	display none
 			.backhome
 				display block
 
 	iframe
-		position relative
+		position absolute
 		width 100%
-		// height calc(100% - 34px)
-		height 110vh
+		height calc(100% - 34px)
+		// height 110vh
 		left 0
-		// top 34px
+		top 34px
+
 @media (max-width: 480px)
 	header
 		padding 20px

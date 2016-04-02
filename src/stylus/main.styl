@@ -17,11 +17,15 @@ body
 	min-height 100%
 	height 100%
 	width 100%
+	margin:0
+	padding:0
+	// overflow-x:hidden
 
 iframe
 	z-index 1
 	min-height 100%
 	height 100%
+	overflow hidden
 	width calc(100% - 300px)
 	position absolute
 	top 0
@@ -33,6 +37,9 @@ iframe
 	&.unzoom
 		transition transform .45s cubic-bezier(0.550, 0.085, 0.680, 0.530)
 		transform scale(0.7,0.7)
+
+	body
+		overflow-x: hidden
 
 #mask
 	z-index 10000000
