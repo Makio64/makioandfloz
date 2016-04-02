@@ -12,6 +12,11 @@ class HomeBouboup extends Article
 		@resize()
 		return
 
+	createIframe:(url)->
+		super(url)
+		@iframe.className += ' home'
+		return
+
 	transitionIn:()->
 		super()
 		document.querySelector('header').className = ''

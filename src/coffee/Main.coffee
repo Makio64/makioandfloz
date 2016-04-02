@@ -100,7 +100,6 @@ class Main
 
 	onArticles:(e)=>
 		# TweenLite.to('header',.5,{height:'34px',minHeight:'34px'})
-		@menu.className = 'article'
 
 		for link in @links
 			if link.dataset.id == e.params.id
