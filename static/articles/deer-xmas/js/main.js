@@ -956,7 +956,7 @@ if(/(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|compal|elaine
         }
 
         var title = encodeURIComponent("Deer Xmas - Case study");
-        var desc = encodeURIComponent("Case study of the creation of Deer Xmas.");
+        var desc = encodeURIComponent("Making of Deer Xmas - Create an easy 3D model with lines, based on MeshLines");
         var url = "http://makioandfloz.com/articles/deerxmas/";
         var urlEncoded = encodeURIComponent(url);
         var urlImgTwitter = encodeURIComponent(url + "twitter.jpg");
@@ -974,7 +974,7 @@ if(/(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|compal|elaine
         });
         interactions.on(document.querySelector(".dx-shares-icon--twitter"), "click", function(e) {
             e.origin.preventDefault();
-            var url = "https://twitter.com/intent/tweet?text=" + desc + " " + urlImgTwitter + " " + urlEncoded;
+            var url = "https://twitter.com/intent/tweet?text=" + desc + " " + urlEncoded;
             window.open(url, title, "width=640,height=400");
         });
 
