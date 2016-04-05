@@ -19,24 +19,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.0.0/languages/glsl.min.js"></script>
   </head>
   <body class="dx">
-    <script>
-      window.fbAsyncInit = function() {
-        FB.init({
-          appId      : '534075170104569',
-          xfbml      : true,
-          version    : 'v2.5'
-        });
-      };
-
-      (function(d, s, id){
-         var js, fjs = d.getElementsByTagName(s)[0];
-         if (d.getElementById(id)) {return;}
-         js = d.createElement(s); js.id = id;
-         js.src = "//connect.facebook.net/en_US/sdk.js";
-         fjs.parentNode.insertBefore(js, fjs);
-       }(document, 'script', 'facebook-jssdk'));
-    </script>
-
     <header class="dx-header">
       <div class="dx-header-bg">
         <div id="background"></div>
@@ -88,12 +70,14 @@
         <pre>
           <code class="hljs javascript">
             const spline = new THREE.CatmullRomCurve3( this._geo )
+            
             // * 6 => increase this number to add more points, decrease to have less points
             this._pointsComputed = spline.getPoints( this._geo.length * 6 )
             this._geo = new THREE.Geometry()
             this._geo.vertices = this._pointsComputed
           </code>
         </pre>
+
         I think, the combination of both gives quite a nice natural feeling in the end.
         <div class="dx-img">
           <img data-width="2016" data-height="1152" data-src="img/lines_final.jpg" src="" alt="First research of lines wrapping around a model" />
@@ -210,5 +194,23 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.18.2/plugins/CSSPlugin.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.18.2/easing/EasePack.min.js"></script>
     <script type="text/javascript" src="js/main.js"></script>
+
+    <script>
+      window.fbAsyncInit = function() {
+        FB.init({
+          appId      : '534075170104569',
+          xfbml      : true,
+          version    : 'v2.5'
+        });
+      };
+
+      (function(d, s, id){
+         var js, fjs = d.getElementsByTagName(s)[0];
+         if (d.getElementById(id)) {return;}
+         js = d.createElement(s); js.id = id;
+         js.src = "//connect.facebook.net/en_US/sdk.js";
+         fjs.parentNode.insertBefore(js, fjs);
+       }(document, 'script', 'facebook-jssdk'));
+    </script>
   </body>
 </html>
