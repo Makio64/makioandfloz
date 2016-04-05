@@ -13,7 +13,6 @@
     <meta property="og:image" content="./facebook.jpg">
     <title>Case study - Tree Lines</title>
     <!-- build:css css/main.css-->
-    <link href='https://fonts.googleapis.com/css?family=Rajdhani:300,500,600' rel='stylesheet' type='text/css'>
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="css/main.css">
     <!-- endbuild-->
@@ -81,7 +80,7 @@ pos.y = smoothstep(0., dist, distance(pos,vec3(0.))) * height;</code></pre>
 		positions[ j ] = x
 		positions[ j + 1 ] = y
 		positions[ j + 2 ] = z
-
+		
 		x += radius * Math.sin( phi ) * Math.cos( theta )
 		y += radius * Math.cos( phi )
 		z += radius * Math.sin( phi ) * Math.sin( theta )
@@ -183,7 +182,7 @@ pos += aOffset*(1.-smoothstep(0.9, 1., percent)*.8);
       js.src = "//connect.facebook.net/en_US/sdk.js";
       fjs.parentNode.insertBefore(js, fjs);
       }(document, 'script', 'facebook-jssdk'));
-
+      
     </script>
     <script>
       !function(d,s,id){var 
@@ -193,7 +192,7 @@ pos += aOffset*(1.-smoothstep(0.9, 1., percent)*.8);
       platform.twitter.com/widgets.js";fjs.
       parentNode.insertBefore(js,fjs);}}
       (document,"script","twitter-wjs");
-
+      
     </script>
     <script type="text/javascript" src="js/bundle.js"></script>
   </body>
