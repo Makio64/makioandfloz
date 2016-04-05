@@ -19,6 +19,24 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.0.0/languages/glsl.min.js"></script>
   </head>
   <body class="dx">
+    <script>
+      window.fbAsyncInit = function() {
+        FB.init({
+          appId      : '534075170104569',
+          xfbml      : true,
+          version    : 'v2.5'
+        });
+      };
+
+      (function(d, s, id){
+         var js, fjs = d.getElementsByTagName(s)[0];
+         if (d.getElementById(id)) {return;}
+         js = d.createElement(s); js.id = id;
+         js.src = "//connect.facebook.net/en_US/sdk.js";
+         fjs.parentNode.insertBefore(js, fjs);
+       }(document, 'script', 'facebook-jssdk'));
+    </script>
+
     <header class="dx-header">
       <div class="dx-header-bg">
         <div id="background"></div>
@@ -194,23 +212,5 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.18.2/plugins/CSSPlugin.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.18.2/easing/EasePack.min.js"></script>
     <script type="text/javascript" src="js/main.js"></script>
-
-    <script>
-      window.fbAsyncInit = function() {
-        FB.init({
-          appId      : '534075170104569',
-          xfbml      : true,
-          version    : 'v2.5'
-        });
-      };
-
-      (function(d, s, id){
-         var js, fjs = d.getElementsByTagName(s)[0];
-         if (d.getElementById(id)) {return;}
-         js = d.createElement(s); js.id = id;
-         js.src = "//connect.facebook.net/en_US/sdk.js";
-         fjs.parentNode.insertBefore(js, fjs);
-       }(document, 'script', 'facebook-jssdk'));
-    </script>
   </body>
 </html>

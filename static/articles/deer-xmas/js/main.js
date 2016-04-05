@@ -957,7 +957,7 @@ if(/(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|compal|elaine
 
         var title = encodeURIComponent("Deer Xmas - Case study");
         var desc = encodeURIComponent("Making of Deer Xmas - Create an easy 3D model with lines, based on MeshLines");
-        var url = "http://makioandfloz.com/articles/deerxmas/";
+        var url = "http://www.makioandfloz.com/article/deer-xmas/";
         var urlEncoded = encodeURIComponent(url);
         var urlImgTwitter = encodeURIComponent(url + "twitter.jpg");
 
@@ -965,12 +965,18 @@ if(/(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|compal|elaine
         interactions.on(document.querySelector(".dx-shares-icon--facebook"), "click", function(e) {
             e.origin.preventDefault();
             FB.ui({
-                method: 'feed',
-                href: urlEncoded,
-                name: title,
-                picture: "./facebook.jpg",
-                description: desc
-            }, function(res) {});
+				method: 'share',
+				href: 'http://www.makioandfloz.com/article/deer-xmas/'
+			}, ( res ) => {} )
+
+            // FB.ui({
+            //     method: 'feed',
+            //     href: url,
+            //     link: url,
+            //     name: "Deer Xmas - Case study",
+            //     picture: "http://www.makioandfloz.com/articles/deer-xmas/facebook.jpg",
+            //     description: "Making of Deer Xmas - Create an easy 3D model with lines, based on MeshLines"
+            // }, function(res) {});
         });
         interactions.on(document.querySelector(".dx-shares-icon--twitter"), "click", function(e) {
             e.origin.preventDefault();
