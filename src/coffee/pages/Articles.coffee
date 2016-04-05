@@ -1,6 +1,6 @@
 Scene 		= require('makio/scenes/Scene')
 Stage 		= require('makio/core/Stage')
-HtmlUtils 	= require('makio/utils/HtmlUtils')
+# HtmlUtils 	= require('makio/utils/HtmlUtils')
 
 class Articles extends Scene
 
@@ -36,13 +36,13 @@ class Articles extends Scene
 
 	onReady:()=>
 		# removeMask
-		doc = @iframe.contentWindow.document
-		HtmlUtils.updateMetaFB(
-			HtmlUtils.getMeta("og:title",doc),
-			HtmlUtils.getMeta("og:description",doc),
-			HtmlUtils.getMeta("og:url",doc),
-			HtmlUtils.getMeta("og:image",doc)
-		)
+		# doc = @iframe.contentWindow.document
+		# HtmlUtils.updateMetaFB(
+		# 	HtmlUtils.getMeta("og:title",doc),
+		# 	HtmlUtils.getMeta("og:description",doc),
+		# 	HtmlUtils.getMeta("og:url",doc),
+		# 	HtmlUtils.getMeta("og:image",doc)
+		# )
 		return
 
 	onUpdate:()=>
