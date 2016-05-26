@@ -7,8 +7,52 @@ ExpiresByType image/x-icon A2592000
 ExpiresByType text/css A86400
 ExpiresByType text/javascript A86400
 ExpiresByType application/x-shockwave-flash A2592000
-#
-<FilesMatch "\.(gif¦jpe?g¦png¦ico¦css¦js¦swf)$">
+
+<IfModule mod_mime.c>
+AddType audio/mpeg .mp3
+AddType audio/mpeg .mp3
+AddType application/x-binary .bin
+</IfModule>
+
+#gzip
+<IfModule mod_filter.c>
+AddOutputFilterByType DEFLATE "application/atom+xml" \
+							  "application/javascript" \
+							  "application/json" \
+							  "application/ld+json" \
+							  "application/manifest+json" \
+							  "application/rdf+xml" \
+							  "application/rss+xml" \
+							  "application/schema+json" \
+							  "application/vnd.geo+json" \
+							  "application/vnd.ms-fontobject" \
+							  "application/x-font-ttf" \
+							  "application/x-javascript" \
+							  "application/x-web-app-manifest+json" \
+							  "application/xhtml+xml" \
+							  "application/xml" \
+							  "font/eot" \
+							  "font/opentype" \
+							  "image/bmp" \
+							  "image/svg+xml" \
+							  "image/vnd.microsoft.icon" \
+							  "image/x-icon" \
+							  "text/cache-manifest" \
+							  "text/css" \
+							  "text/html" \
+							  "text/javascript" \
+							  "text/plain" \
+							  "text/vcard" \
+							  "text/vnd.rim.location.xloc" \
+							  "text/vtt" \
+							  "text/x-component" \
+							  "text/x-cross-domain-policy" \
+							  "text/xml" \
+							  "application/x-binary" \
+							  "audio/mpeg"
+</IfModule>
+
+<FilesMatch "\.(gif¦jpe?g¦png¦ico¦css¦js¦swf|mp3|bin)$">
 Header set Cache-Control "public"
 </FilesMatch>
 
